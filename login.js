@@ -22,7 +22,7 @@ $(document).ready(() => {
                 },
                 success: (response) => { 
                     console.log("Login Worked");
-                    //Uncomment next to go into roundtrip search after login
+                    //Uncomment next line to go into roundtrip search after login
                     //buildRoundtripSearchInterface();                }
             });
     });
