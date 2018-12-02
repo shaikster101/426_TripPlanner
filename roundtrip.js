@@ -27,4 +27,5 @@ let buildRoundtripSearchInterface = function() {
 
     $('#search_div').append('<div id="flight-search-button-div">');
     $('#flight-search-button-div').append('<input type="button" id="flight-search-button" value="Search">');
+
 }
