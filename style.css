@@ -1,0 +1,46 @@
+/* BEGIN CSS FOR ROUNDTRIP TESTING
+#search_div {
+	width: 80%;
+	background-color: gray;
+	margin: auto;
+}
+
+#departure-section {
+	float: left;
+	border: solid white;
+	width: 30%;
+	background-color: white;
+	margin-left: 5%;
+}
+
+#destination-section {
+	border: solid white;
+	width: 30%;
+	margin-left: 40%;
+	background-color: white;
+}
+
+#date-selection {
+	margin-top: 10px;
+}
+
+#departure-date-selection {
+	float: left;
+	border: solid white;
+	width: 30%;
+	background-color: white;
+	margin-left: 5%;
+}
+
+#return-date-selection {
+	border: solid white;
+	width: 30%;
+	margin-left: 40%;
+	background-color: white;
+}
+
+#flight-search-button-div {
+	margin-top: 20px;
+	margin-left: 5%;
+}
+*/
