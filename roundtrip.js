@@ -46,7 +46,6 @@ let buildRoundtripSearchInterface = function() {
 }
 
 
-
 let retrieveAirports = function() {
 	$.ajax(root_url + 'airports', 
 	{   
@@ -93,6 +92,10 @@ let buildResultList = function() {
 	registerAirportFilter();
 }
 
+let getIdFromListItem = function(item) {
+	return item.attr('id').substring(3,item.attr('id').length);
+}
+
 let registerAirportFilter = function() {
 	//Can't apply two different filters at once?
 	$('#departure-input').on("keyup", function() {
@@ -118,15 +121,10 @@ let registerAirportFilter = function() {
 	});
 }
 
-let getIdFromListItem = function(item) {
-	return item.attr('id').substring(3,item.attr('id').length);
-}
-
 let flightSearch = function() {
-	let departureDate = $('#departure-date-input').val();
 	let returnDate = $('#return-date-input').val();
 
-	///////////////////// Get Departure Flights
+	// Get Departure Flights
 	let departureFlights = undefined;
 	$.ajax(root_url + `flights?filter[departure_id]=${selectedDepartureAirport}&filter[destination_id]=${selectedDestinationAirport}`, 
 	{   
@@ -136,55 +134,33 @@ let flightSearch = function() {
 		},
 		success: (response) => { 
 			departureFlights = response;
+			console.log(departureFlights);
+			instanceSearch(departureFlights);
 		}
     });
-    console.log(departureFlights);
-
-	// let departureInstances = [];
- //    for(let i=0; i < departureFlights.length; i++){
- //    	$.ajax(root_url + `instances?filter[flight_id]=${departureFlights[i]}&filter[date]=${departureDate}`, 
-	// 	{   
-	// 		type: 'GET', 
-	// 		xhrFields: {withCredentials: true}, 
-	// 		data: { 
-	// 		},
-	// 		success: (response) => {
-	// 			if()
-	// 			for(let i=0; i < response.length; i++){
-	// 				departureInstances.push(response[i])
-	// 			}
-	// 		}
-	//     });
- //    }
-
- //    console.log(departureInstances);
-
 }
 
-// let registerAirportAutocomplete = function() {
-// 	let cities = [];
-// 	let states = [];
-// 	let names = [];
-// 	let codes = [];
+let instanceSearch = function(flights) {
+	// let departureDate = $('#departure-date-input').val();
 
-// 	for(let i = 0; i < airports.length; i++){
-
-// 		cities.push(airports[i].city);
-// 		states.push(airports[i].state);
-// 		names.push(airports[i].name);
-// 		codes.push(airports[i].code);
-// 	}
-
-// 	$('#departure-input').autocomplete({
-// 		source: cities
-// 	});
-// 	$('#departure-input').autocomplete({
-// 		source: states
-// 	});
-// 	$('#departure-input').autocomplete({
-// 		source: names
-// 	});
-// 	$('#departure-input').autocomplete({
-// 		source: codes
-// 	});
-// }
+	let departureDate = "2018-12-04";
+	console.log(departureDate);
+	let departureInstances = [];
+    for(let i=0; i < flights.length; i++){
+    	$.ajax(root_url + `instances?filter[flight_id]=${flights[i].id}&filter[date]=${departureDate}`,
+    	// $.ajax(root_url + `instances?filter[flight_id]=263727&filter[date]=${departureDate}`, 
+		{   
+			type: 'GET', 
+			xhrFields: {withCredentials: true}, 
+			data: { 
+			},
+			success: (response) => {
+				console.log('flight_id: '+flights[i].id+"  "+'date: '+departureDate);
+				for(let j=0; j < response.length; j++){
+					departureInstances.push(response[i])
+				}
+				console.log(response);
+			}
+	    });
+    }
+}
