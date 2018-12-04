@@ -8,10 +8,6 @@ $(document).ready(() => {
         var login_url = root_url + "sessions"; 
         var user = $('#login_user').val();
         var pass = $('#login_pass').val();
-
-        alert(user); 
-        alert(pass); 
-        
         $.ajax(login_url, 
             {   type: 'POST', 
                 xhrFields: {withCredentials: true}, 
@@ -21,12 +17,40 @@ $(document).ready(() => {
 			}
                 },
                 success: (response) => { 
-                    console.log("Login Worked");
+                    alert("Login Worked");
+                    homePage(user, login_url)
                     //Uncomment next line to go into roundtrip search after login
                     //buildRoundtripSearchInterface();                
                 }
             });
     });
+
+
+    var homePage = function(user, login_url){
+         
+
+        var body = $('body')
+
+        body.empty(); 
+
+        body.append($('<h1>Home Page</h1>'));
+
+        body.append($('<p>USER: ' +user+ '</p>')); 
+
+        //Buttons
+        var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{});
+        var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{});
+        var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{});
+
+        var buttoDiv = $('<div class = "buttonDiv"></div>'); 
+
+        buttoDiv.append(singleTripBTN);
+        buttoDiv.append(roundTripBTN); 
+        buttoDiv.append(iteneraryBTN); 
+
+        body.append(buttoDiv); 
+
+    }
     
 
     $('#create_user_btn').on('click', () => {
@@ -60,8 +84,6 @@ $(document).ready(() => {
         body.append($('<button class= "create"> Create User</button>').click(()=>{createUser()})); 
 
         alert("this works");
-
-        
 
         
           
