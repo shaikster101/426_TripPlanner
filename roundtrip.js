@@ -141,9 +141,8 @@ let flightSearch = function() {
 }
 
 let instanceSearch = function(flights) {
-	// let departureDate = $('#departure-date-input').val();
+	let departureDate = $('#departure-date-input').val();
 
-	let departureDate = "2018-12-04";
 	console.log(departureDate);
 	let departureInstances = [];
     for(let i=0; i < flights.length; i++){
