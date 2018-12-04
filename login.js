@@ -9,8 +9,8 @@ $(document).ready(() => {
         var user = $('#login_user').val();
         var pass = $('#login_pass').val();
 
-        alert(user); 
-        alert(pass); 
+        // alert(user); 
+        // alert(pass); 
         
         $.ajax(login_url, 
             {   type: 'POST', 
@@ -23,7 +23,7 @@ $(document).ready(() => {
                 success: (response) => { 
                     console.log("Login Worked");
                     //Uncomment next line to go into roundtrip search after login
-                    //buildRoundtripSearchInterface();                
+                    buildRoundtripSearchInterface();                
                 }
             });
     });

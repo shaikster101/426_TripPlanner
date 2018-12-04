@@ -1,4 +1,4 @@
-/* BEGIN CSS FOR ROUNDTRIP TESTING
+ /*BEGIN CSS FOR ROUNDTRIP TESTING*/
 #search_div {
 	width: 80%;
 	background-color: gray;
@@ -43,4 +43,41 @@
 	margin-top: 20px;
 	margin-left: 5%;
 }
-*/
+
+#airport-selection {
+	height: 400px;
+	border: solid red;
+}
+
+.departure-result-list {
+	border: solid black;
+	height: 270px;
+	overflow: scroll;
+}
+
+.destination-result-list {
+	border: solid black;
+	height: 270px;
+	overflow: scroll;
+}
+
+.destination-list-item {
+	margin-left: 20px;
+	margin-right: 20px;
+	border: solid black;
+}
+
+.departure-list-item {
+	margin-left: 20px;
+	margin-right: 20px;
+	border: solid black;
+}
+
+.selectedDepartureItem {
+	background-color: #add8e6;
+}
+
+.selectedDestinationItem {
+	background-color: #add8e6;
+}
+
