@@ -2,7 +2,7 @@ let airports = [];
 selectedDepartureAirport = null;
 selectedDestinationAirport = null;
 
-let buildRoundtripSearchInterface = function() {
+let buildSingletripSearchInterface = function() {
 
 	let body = $('body');
     body.empty();
@@ -10,7 +10,7 @@ let buildRoundtripSearchInterface = function() {
     console.log('build search interface called');
 
     body.append('<div id="search_div">');
-    $("#search_div").append('<input type="radio" name="Flight Type" value="round-trip">Round Trip<br>');
+    //$("#search_div").append('<input type="radio" name="Flight Type" value="round-trip">Round Trip<br>');
 
     $("#search_div").append('<div id="airport-selection">');
     $('#airport-selection').append('<div id="departure-section">');
@@ -21,6 +21,7 @@ let buildRoundtripSearchInterface = function() {
     $('#departure-section').append('<input type="text" id="departure-input">');
     $('#departure-section').append('<div class="departure-result-list" id="departure-result-list">');
 
+    
     $('#destination-section').append('<h1 id="destination-text">Flying to</h1>');
     $('#destination-section').append('<input type="text" id="destination-input">');
     $('#destination-section').append('<div class="destination-result-list" id="destination-result-list">');
@@ -28,12 +29,13 @@ let buildRoundtripSearchInterface = function() {
 
     $("#search_div").append('<div id="date-selection">');
     $('#date-selection').append('<div id="departure-date-selection">');
-    $('#date-selection').append('<div id="return-date-selection">');
+    //$('#date-selection').append('<div id="return-date-selection">');
 
     $('#departure-date-selection').append('<h1 id="departure-date-text">Departing</h1>');
     $('#departure-date-selection').append('<input type="date" name="Departing" id="departure-date-input">');
-    $('#return-date-selection').append('<h1 id="return-date-text">Returning</h1>');
-    $('#return-date-selection').append('<input type="date" name="Returning" id="return-date-input">');
+
+    // $('#return-date-selection').append('<h1 id="return-date-text">Returning</h1>');
+    // $('#return-date-selection').append('<input type="date" name="Returning" id="return-date-input">');
 
     $('#search_div').append('<div id="flight-search-button-div">');
     $('#flight-search-button-div').append('<input type="button" id="flight-search-button" value="Search">');
@@ -122,7 +124,6 @@ let registerAirportFilter = function() {
 }
 
 let flightSearch = function() {
-	let returnDate = $('#return-date-input').val();
 
 	// Get Departure Flights
 	let departureFlights = undefined;
