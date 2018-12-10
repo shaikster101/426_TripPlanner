@@ -190,9 +190,9 @@ var buildConfirmationPage =  function(departureFlightsArr){
 	for(let i = 0; i < departureFlightsArr.length; i++){
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${departureFlightsArr[i].id}">
-				<p class="arrival">${departureFlightsArr[i].arrives_at}</b></p>
-				<p class="departure">${departureFlightsArr[i].departs_at}</b></p>
-				<p class="departure">${departureFlightsArr[i].plane_id}</b></p>
+				<p class="arrival"> Arrives at:${departureFlightsArr[i].arrives_at}</b></p>
+				<p class="departure"> Deaprts at: ${departureFlightsArr[i].departs_at}</b></p>
+				<p class="departure"> Plane Id: ${departureFlightsArr[i].plane_id}</b></p>
 			</div>
 			`);
 
