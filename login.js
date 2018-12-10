@@ -36,6 +36,7 @@ $(document).ready(() => {
         body.append($('<h1>Home Page</h1>'));
 
         body.append($('<p>USER: ' +user+ '</p>')); 
+        body.append($('<p1>Make a selection from the panel below: </p1>'));
 
         //Buttons
         var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
@@ -47,7 +48,7 @@ $(document).ready(() => {
         buttoDiv.append(singleTripBTN);
         buttoDiv.append(roundTripBTN); 
         buttoDiv.append(iteneraryBTN); 
-
+        
         body.append(buttoDiv); 
 
     }
@@ -80,9 +81,8 @@ $(document).ready(() => {
         
         body.append($('<button class= "create"> Create User</button>').click(()=>{createUser()})); 
 
-      
-        
-        body.append($('<button id="goHome" class = "homePageLoad"> Login <button>'));
+        alert("this works");
+
         
           
     });
@@ -94,8 +94,6 @@ var createUser = function(){
     var login_url = root_url + "users"; 
     var user = $('#login_user').val();
     var pass = $('#password_user').val();
-
-    var body = $('body')
 
     alert(user); 
     alert(pass); 
@@ -109,8 +107,7 @@ var createUser = function(){
         }
             },
             success: (response) => { 
-                alert("User Created. Press Login"); 
-                continueBtn.click(()=>{window.location.reload(true)});
+                console.log("Creation Worked"); 
             }
     });
 }
