@@ -1,13 +1,12 @@
-let airports = [];
-selectedDepartureAirport = null;
-selectedDestinationAirport = null;
+let airports_roundtrip = [];
+selectedDepartureAirport_roundtrip = null;
+selectedDestinationAirport_roundtrip = null;
 
 let buildRoundtripSearchInterface = function() {
 
 	let body = $('body');
     body.empty();
 
-    console.log('build search interface called');
 
     body.append('<div id="search_div">');
     $("#search_div").append('<input type="radio" name="Flight Type" value="round-trip">Round Trip<br>');
@@ -39,14 +38,17 @@ let buildRoundtripSearchInterface = function() {
     $('#flight-search-button-div').append('<input type="button" id="flight-search-button" value="Search">');
 
     $('#flight-search-button').on('click', function(){
-    	flightSearch();
+    	flightSearch_roundtrip();
     });
 
-	retrieveAirports();
+    body.append('<div id="instanceDisplayDiv">');
+
+
+	retrieveAirports_roundtrip();
 }
 
 
-let retrieveAirports = function() {
+let retrieveAirports_roundtrip = function() {
 	$.ajax(root_url + 'airports', 
 	{   
 		type: 'GET', 
@@ -54,49 +56,47 @@ let retrieveAirports = function() {
 		data: { 
 		},
 		success: (response) => { 
-			airports = response;
-			buildResultList();         
+			airports_roundtrip = response;
+			buildResultList_roundtrip();         
 		}
     });
 }
 
-let buildResultList = function() {
-	for(let i=0; i < airports.length; i++){
+let buildResultList_roundtrip = function() {
+	for(let i=0; i < airports_roundtrip.length; i++){
 		$('.departure-result-list').append(`
-			<div class="departure-list-item" id="li_${airports[i].id}">
-				<p class="departure-list-city">${airports[i].city}, ${airports[i].state}</p>
-				<p class="departure-list-code"><b>${airports[i].code}</b> ${airports[i].name}</p>
+			<div class="departure-list-item" id="li_${airports_roundtrip[i].id}">
+				<p class="departure-list-city">${airports_roundtrip[i].city}, ${airports_roundtrip[i].state}</p>
+				<p class="departure-list-code"><b>${airports_roundtrip[i].code}</b> ${airports_roundtrip[i].name}</p>
 			</div>
 			`);
 		$('.destination-result-list').append(`
-			<div class="destination-list-item" id="li_${airports[i].id}">
-				<p class="destination-list-city">${airports[i].city}, ${airports[i].state}</p>
-				<p class="destination-list-code"><b>${airports[i].code}</b> ${airports[i].name}</p>
+			<div class="destination-list-item" id="li_${airports_roundtrip[i].id}">
+				<p class="destination-list-city">${airports_roundtrip[i].city}, ${airports_roundtrip[i].state}</p>
+				<p class="destination-list-code"><b>${airports_roundtrip[i].code}</b> ${airports_roundtrip[i].name}</p>
 			</div>
 			`);
 	}
 
 	$('.departure-list-item').on('click', function() {
-		console.log($(this).attr('id'));
-		selectedDepartureAirport = getIdFromListItem($(this));
+		selectedDepartureAirport_roundtrip = getIdFromListItem_roundtrip($(this));
 		$('.selectedDepartureItem').removeClass('selectedDepartureItem');
 		$(this).addClass('selectedDepartureItem');
 	});
 
 	$('.destination-list-item').on('click', function() {
-		console.log($(this).attr('id'));
-		selectedDestinationAirport = getIdFromListItem($(this));
+		selectedDestinationAirport_roundtrip = getIdFromListItem_roundtrip($(this));
 		$('.selectedDestinationItem').removeClass('selectedDestinationItem');
 		$(this).addClass('selectedDestinationItem');
 	});
-	registerAirportFilter();
+	registerAirportFilter_roundtrip();
 }
 
-let getIdFromListItem = function(item) {
+let getIdFromListItem_roundtrip = function(item) {
 	return item.attr('id').substring(3,item.attr('id').length);
 }
 
-let registerAirportFilter = function() {
+let registerAirportFilter_roundtrip = function() {
 	//Can't apply two different filters at once?
 	$('#departure-input').on("keyup", function() {
 		var value = $(this).val().toLowerCase();
@@ -120,46 +120,125 @@ let registerAirportFilter = function() {
 	    // });
 	});
 }
-
-let flightSearch = function() {
-	let returnDate = $('#return-date-input').val();
+let departureFlights_roundtrip = undefined;
+let returnFlights_roundtrip = undefined;
+let flightSearch_roundtrip = function() {
 
 	// Get Departure Flights
-	let departureFlights = undefined;
-	$.ajax(root_url + `flights?filter[departure_id]=${selectedDepartureAirport}&filter[destination_id]=${selectedDestinationAirport}`, 
+	$.ajax(root_url + `flights?filter[departure_id]=${selectedDepartureAirport_roundtrip}&filter[destination_id]=${selectedDestinationAirport_roundtrip}`, 
 	{   
 		type: 'GET', 
 		xhrFields: {withCredentials: true}, 
 		data: { 
 		},
 		success: (response) => { 
-			departureFlights = response;
-			console.log(departureFlights);
-			instanceSearch(departureFlights);
+			departureFlights_roundtrip = response;
+			departureInstanceSearch_roundtrip();
+		}
+    });
+
+    // Get Return Flights
+	$.ajax(root_url + `flights?filter[departure_id]=${selectedDestinationAirport_roundtrip}&filter[destination_id]=${selectedDepartureAirport_roundtrip}`, 
+	{   
+		type: 'GET', 
+		xhrFields: {withCredentials: true}, 
+		data: { 
+		},
+		success: (response) => { 
+			returnFlights_roundtrip = response;
 		}
     });
 }
 
-let instanceSearch = function(flights) {
-	let departureDate = $('#departure-date-input').val();
+let departureInstanceSearch_roundtrip = function() {
+	// let departureDate = $('#departure-date-input').val();
+	let departureDate = "2018-11-30";
 
-	console.log(departureDate);
 	let departureInstances = [];
-    for(let i=0; i < flights.length; i++){
-    	$.ajax(root_url + `instances?filter[flight_id]=${flights[i].id}&filter[date]=${departureDate}`,
-    	// $.ajax(root_url + `instances?filter[flight_id]=263727&filter[date]=${departureDate}`, 
+	let j=0;//used for counting number of successes
+    for(let i=0; i < departureFlights_roundtrip.length; i++){
+    	$.ajax(root_url + `instances?filter[flight_id]=${departureFlights_roundtrip[i].id}&filter[date]=${departureDate}`,
 		{   
 			type: 'GET', 
 			xhrFields: {withCredentials: true}, 
 			data: { 
 			},
 			success: (response) => {
-				console.log('flight_id: '+flights[i].id+"  "+'date: '+departureDate);
-				for(let j=0; j < response.length; j++){
-					departureInstances.push(response[i])
+				for(let k = 0; k < response.length; k++){
+					response[k].departs_at = departureFlights_roundtrip[i].departs_at;
+					response[k].arrives_at = departureFlights_roundtrip[i].arrives_at;
 				}
-				console.log(response);
+				departureInstances = departureInstances.concat(response);
+				if(j == departureFlights_roundtrip.length-1){
+					displayDepartureInstances_roundtrip(departureInstances);
+				}
+				j = j+1;
 			}
 	    });
     }
 }
+
+let selectedDepartureInstance_roundtrip = undefined;
+let displayDepartureInstances_roundtrip = function(instances) {
+	$("#instanceDisplayDiv").append("<h1>Departure Flights</h1>");
+	for(let i=0; i < instances.length; i++){
+		$("#instanceDisplayDiv").append(`<div class="departureInstanceDisplay" id="in_${i.id}">
+											<p>Departs: ${instances[i].departs_at}</p>
+											<p>Arrives: ${instances[i].arrives_at}</p>
+										 </div>`);
+	}
+
+	$(".departureInstanceDisplay").on("click", function() {
+		selectedDepartureInstance_roundtrip = getIdFromListItem_roundtrip($(this));
+		returnInstanceSearch_roundtrip()
+	});
+}
+
+let returnInstanceSearch_roundtrip = function() {
+	// let departureDate = $('#departure-date-input').val();
+	let returnDate = "2018-12-02";
+
+	let returnInstances = [];
+	let j=0;//used for counting number of successes
+    for(let i=0; i < returnFlights_roundtrip.length; i++){
+    	$.ajax(root_url + `instances?filter[flight_id]=${returnFlights_roundtrip[i].id}&filter[date]=${returnDate}`,
+		{   
+			type: 'GET', 
+			xhrFields: {withCredentials: true}, 
+			data: { 
+			},
+			success: (response) => {
+				for(let k = 0; k < response.length; k++){
+					response[k].departs_at = returnFlights_roundtrip[i].departs_at;
+					response[k].arrives_at = returnFlights_roundtrip[i].arrives_at;
+				}
+				returnInstances = returnInstances.concat(response);
+				if(j == returnFlights_roundtrip.length-1){
+					displayReturnInstances_roundtrip(returnInstances);
+				}
+				j = j+1;
+			}
+	    });
+    }
+}
+
+let selectedReturnInstance_roundtrip = undefined;
+let displayReturnInstances_roundtrip = function(instances) {
+	$("#instanceDisplayDiv").empty();
+	$("#instanceDisplayDiv").append("<h1>Return Flights</h1>");
+	for(let i=0; i < instances.length; i++){
+		$("#instanceDisplayDiv").append(`<div class="departureInstanceDisplay" id="in_${instances[i].id}">
+											<p>Departs: ${instances[i].departs_at}</p>
+											<p>Arrives: ${instances[i].arrives_at}</p>
+										 </div>`);
+	}
+
+	$(".departureInstanceDisplay").on("click", function() {
+		selectedDepartureInstance_roundtrip = getIdFromListItem_roundtrip($(this));
+		$("#instanceDisplayDiv").empty();
+		displayFlightInfo_roundtrip();
+	});
+}
+
+
+
