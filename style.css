@@ -89,3 +89,119 @@
 	overflow-y: scroll;
     height: 300px;
 }
+
+/*Login*/
+h1{
+	text-align:center;
+}
+
+body{
+    background-color: skyblue;
+}
+
+
+#login_div{
+    padding-bottom: 30px;
+    padding-top: 10px;
+    border-style: solid;
+    background: burlywood;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#login_btn{
+	background-color:lightskyblue; 
+	color: black;
+	
+    width: 100px;
+    height: 50px;
+    position: relative;
+	left: 320px;
+	bottom: 45px;
+    font-size: 15px;
+}
+
+
+
+#create_user_btn{
+	background-color:lightskyblue; 
+	color: black;
+	
+    width: 100px;
+    height: 50px;
+    position: relative;
+	left: 500px;
+	bottom: 93px;
+    font-size: 15px;
+}
+
+
+
+#singleBtn{
+	background-color: white;
+	border-radius: 8px;
+  	color: black;
+  	border: 2px solid green;;
+    width: 100px;
+    height: 50px;
+    font-size: 13px;
+}
+
+#singleBtn:hover{
+	background-color: green;
+	color: white;
+}
+#roundBtn{
+	background-color: white;
+	border-radius: 8px;
+	color: black;
+	border: 2px solid red;
+    width: 100px;
+	height: 50px;
+	position: relative;
+	left: 20px;
+    font-size: 13px;
+}
+
+#roundBtn:hover{
+	background-color: red;
+	color: white;
+}
+
+
+
+#itenerary{
+	background-color: white;
+	border-radius: 8px;
+	color: black;
+	border: 2px solid purple;
+    width: 100px;
+	height: 50px;
+	position: relative;
+	left: 35px;
+	font-size: 13px;
+}
+
+#itenerary:hover{
+	background-color: purple;
+	color: white;
+}
+
+.buttonDiv{
+	padding-bottom: 30px;
+    padding-top: 10px;
+	border-style: dashed;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+p1{
+	font-size: 20px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+p{
+	font-size: 20px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: bold;
+	position: relative;
+	bottom: 50px;
+}
