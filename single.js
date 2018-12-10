@@ -1,5 +1,5 @@
 let airports = [];
-
+let seats = [];
 let departureAirportId; 
 let destinationAirportId; 
 let departureFlightsArr = [];
@@ -200,7 +200,21 @@ var buildConfirmationPage =  function(departureFlightsArr){
 			`);
 	}
 
+	//..................
+	$.ajax(root_url + 'seats', 
+	{   
+		type: 'GET', 
+		xhrFields: {withCredentials: true}, 
+		data: { 
+		},
+		success: (response) => { 
+			seats = response;
+			console.log(seats[0])	      
+		}
+	});
 	
+	//..........................................
+
 
 	var confirmation =$('<div id="confirmation">Confirmation Details</div><br>');
 	
