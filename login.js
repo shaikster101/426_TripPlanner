@@ -18,7 +18,7 @@ $(document).ready(() => {
                 },
                 success: (response) => { 
                     alert("Login Worked");
-                    homePage(user, login_url)
+                    homePage(user)
                     //Uncomment next line to go into roundtrip search after login
                     //buildRoundtripSearchInterface();                
                 }
@@ -26,7 +26,7 @@ $(document).ready(() => {
     });
 
 
-    var homePage = function(user, login_url){
+    var homePage = function(user){
          
 
         var body = $('body')
@@ -77,9 +77,6 @@ $(document).ready(() => {
         loginDiv.append(userDiv);
         loginDiv.append(passDiv);
         body.append(loginDiv); 
-
-
-       
         
         body.append($('<button class= "create"> Create User</button>').click(()=>{createUser()})); 
 

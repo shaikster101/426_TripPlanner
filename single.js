@@ -170,14 +170,17 @@ let instanceSearch = function(flights) {
 
 var buildConfirmationPage =  function(departureFlightsArr){
 
-	
-
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
 	console.log(departureFlightsArr[0]); 
 	let body = $('body');
 	body.empty();
+
+	var backBTN = $('<button id=goBack> Go back </button>').click(()=>{
+		buildSingletripSearchInterface();});
+
+	body.append(backBTN); 
 	
 	body.append('<div id="AirportHolder"></div>');
 	$('#AirportHolder').append('<div id = "DepartureHolder">'+ departureCity+ '</div>');
@@ -190,16 +193,44 @@ var buildConfirmationPage =  function(departureFlightsArr){
 	for(let i = 0; i < departureFlightsArr.length; i++){
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${departureFlightsArr[i].id}">
-				<p class="arrival">${departureFlightsArr[i].arrives_at}</b></p>
-				<p class="departure">${departureFlightsArr[i].departs_at}</b></p>
-				<p class="departure">${departureFlightsArr[i].plane_id}</b></p>
+				<p class="arrival"> Arrives at:${departureFlightsArr[i].arrives_at}</b></p>
+				<p class="departure"> Deaprts at: ${departureFlightsArr[i].departs_at}</b></p>
+				<p class="departure"> Plane Id: ${departureFlightsArr[i].plane_id}</b></p>
 			</div>
 			`);
-
-		console.log("thisisisis");
 	}
 
 	
+
+	var confirmation =$('<div id="confirmation">Confirmation Details</div><br>');
+	
+
+	body.append(confirmation); 
+	body.append('<input type="text" id="Name" ></input>' + '<br>');
+	body.append('<input type="text" id="Email"></input>'+'<br>')
+
+
+	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
+		finalConfirm();});
+
+	body.append(confirmBtn); 
+
+
+
+}
+
+var finalConfirm = function(){
+	var body = $('body')
+
+	body.empty(); 
+
+	var confirmHeader = $('<h1 id= mainConfirm> Congratulations a Booking has Been confirmed, check your email for details</h1>')
+
+	var backBtn = $('<button id=goBack> Go back </button>').click(()=>{
+		buildSingletripSearchInterface();});
+	
+	body.append(confirmHeader); 
+	body.append(backBtn); 
 
 
 }
