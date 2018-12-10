@@ -151,8 +151,8 @@ let flightSearch_roundtrip = function() {
 }
 
 let departureInstanceSearch_roundtrip = function() {
-	// let departureDate = $('#departure-date-input').val();
-	let departureDate = "2018-11-30";
+	let departureDate = $('#departure-date-input').val();
+	// let departureDate = "2018-11-30";
 
 	let departureInstances = [];
 	let j=0;//used for counting number of successes
@@ -195,8 +195,8 @@ let displayDepartureInstances_roundtrip = function(instances) {
 }
 
 let returnInstanceSearch_roundtrip = function() {
-	// let returnDate = $('#departure-date-input').val();
-	let returnDate = "2018-12-02";
+	let returnDate = $('#departure-date-input').val();
+	// let returnDate = "2018-12-02";
 
 	let returnInstances = [];
 	let j=0;//used for counting number of successes
