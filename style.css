@@ -84,3 +84,8 @@
 .departureInstanceDisplay {
 	border: solid black;
 }
+
+#FlightHolder{
+	overflow-y: scroll;
+    height: 300px;
+}
