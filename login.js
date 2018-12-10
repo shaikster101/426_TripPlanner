@@ -80,8 +80,9 @@ $(document).ready(() => {
         
         body.append($('<button class= "create"> Create User</button>').click(()=>{createUser()})); 
 
-        alert("this works");
-
+      
+        
+        body.append($('<button id="goHome" class = "homePageLoad"> Login <button>'));
         
           
     });
@@ -93,6 +94,8 @@ var createUser = function(){
     var login_url = root_url + "users"; 
     var user = $('#login_user').val();
     var pass = $('#password_user').val();
+
+    var body = $('body')
 
     alert(user); 
     alert(pass); 
@@ -106,7 +109,8 @@ var createUser = function(){
         }
             },
             success: (response) => { 
-                console.log("Creation Worked"); 
+                alert("User Created. Press Login"); 
+                continueBtn.click(()=>{window.location.reload(true)});
             }
     });
 }
