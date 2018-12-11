@@ -14,17 +14,21 @@ src="http://www.cs.unc.edu/~kmp/comp426fall18/jquery-3.3.1.js"></script>
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 
-<body>
+<body id = "loginbody">
 
 <div class = 'login_header' id = 'main_header'>
 <h1>Tarheel Travel Planner</h1>
 </div>
-
+<!--<img id = "planegif" src = "airplane.gif" alt = "plane">-->
 <div id="login_div">
   User: <input type="text" id="login_user" class = 'user_input' value='rhmclean'><br>
   Password: <input type="text" id="login_pass" class = 'password_input' value='rhmclean'><br>
   <button id="login_btn">Login</button><br>
   <button id="create_user_btn">Create User</button>
+</div>
+
+<div id = "image_div">
+  <img id = "planegif" src = "airplane.gif">
 </div>
 <div id="mesg_div"></div>
 </body>
