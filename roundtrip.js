@@ -151,8 +151,8 @@ let flightSearch_roundtrip = function() {
 }
 
 let departureInstanceSearch_roundtrip = function() {
-	let departureDate = $('#departure-date-input').val();
-	// let departureDate = "2018-11-30";
+	// let departureDate = $('#departure-date-input').val();
+	let departureDate = "2018-11-30";
 
 	let departureInstances = [];
 	let j=0;//used for counting number of successes
@@ -182,9 +182,11 @@ let selectedDepartureInstance_roundtrip = undefined;
 let displayDepartureInstances_roundtrip = function(instances) {
 	$("#instanceDisplayDiv").append("<h1>Departure Flights</h1>");
 	for(let i=0; i < instances.length; i++){
+		let departDate = new Date(instances[i].departs_at);
+		let returnDate = new Date(instances[i].arrives_at);
 		$("#instanceDisplayDiv").append(`<div class="departureInstanceDisplay" id="in_${i.id}">
-											<p>Departs: ${instances[i].departs_at}</p>
-											<p>Arrives: ${instances[i].arrives_at}</p>
+											<p>Departs: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+											<p>Arrives: ${returnDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 										 </div>`);
 	}
 
@@ -195,8 +197,8 @@ let displayDepartureInstances_roundtrip = function(instances) {
 }
 
 let returnInstanceSearch_roundtrip = function() {
-	let returnDate = $('#departure-date-input').val();
-	// let returnDate = "2018-12-02";
+	// let returnDate = $('#departure-date-input').val();
+	let returnDate = "2018-12-02";
 
 	let returnInstances = [];
 	let j=0;//used for counting number of successes
@@ -227,9 +229,11 @@ let displayReturnInstances_roundtrip = function(instances) {
 	$("#instanceDisplayDiv").empty();
 	$("#instanceDisplayDiv").append("<h1>Return Flights</h1>");
 	for(let i=0; i < instances.length; i++){
+		let departDate = new Date(instances[i].departs_at);
+		let returnDate = new Date(instances[i].arrives_at);
 		$("#instanceDisplayDiv").append(`<div class="departureInstanceDisplay" id="in_${instances[i].id}">
-											<p>Departs: ${instances[i].departs_at}</p>
-											<p>Arrives: ${instances[i].arrives_at}</p>
+											<p>Departs: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
+											<p>Arrives: ${returnDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</p>
 										 </div>`);
 	}
 
