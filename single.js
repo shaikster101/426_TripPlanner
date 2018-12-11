@@ -20,7 +20,7 @@ let buildSingletripSearchInterface = function() {
     $("#search_div").append('<div id="airport-selection">');
     $('#airport-selection').append('<div id="departure-section">');
     $('#airport-selection').append('<div id="destination-section">');
-
+	$('#airport-selection').append('<p id= "singletrip_title">Book a flight for a single trip</p>');
     //Departure Airport Search
     $('#departure-section').append('<h1 id="departure-text">Flying from</h1>');
     $('#departure-section').append('<input type="text" id="departure-input">');
