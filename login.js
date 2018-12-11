@@ -27,11 +27,11 @@ $(document).ready(() => {
 
 
     var homePage = function(user){
-         
-
         var body = $('body')
+        body.empty();
 
-        body.empty(); 
+        var flightContainer = $('<div id="flightContainer"></div>')
+
 
         body.append($('<h1>Home Page</h1>'));
 
@@ -50,6 +50,9 @@ $(document).ready(() => {
         buttoDiv.append(iteneraryBTN); 
         
         body.append(buttoDiv); 
+        body.append(flightContainer); 
+
+       
 
     }
     
