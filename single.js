@@ -10,7 +10,7 @@ selectedDestinationAirport = null;
 
 let buildSingletripSearchInterface = function() {
 
-	let body = $('body');
+	let body = $('#flightContainer');
     body.empty();
 
     console.log('build search interface called');
@@ -191,10 +191,12 @@ var buildConfirmationPage =  function(departureFlightsArr){
 
 
 	for(let i = 0; i < departureFlightsArr.length; i++){
+		let departDate = new Date(departureFlightsArr[i].departs_at);
+		let returnDate = new Date(departureFlightsArr[i].arrives_at);
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${departureFlightsArr[i].id}">
-				<p class="arrival"> Arrives at:${departureFlightsArr[i].arrives_at}</b></p>
-				<p class="departure"> Deaprts at: ${departureFlightsArr[i].departs_at}</b></p>
+				<p class="departure"> Deaprts at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
+				<p class="arrival"> Arrives at:${returnDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
 				<p class="departure"> Plane Id: ${departureFlightsArr[i].plane_id}</b></p>
 			</div>
 			`);
