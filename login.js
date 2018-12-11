@@ -37,7 +37,7 @@ $(document).ready(() => {
 
         body.append($('<p>USER: ' +user+ '</p>')); 
         body.append($('<p1>Make a selection from the panel below: </p1>'));
-
+        
         //Buttons
         var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
         var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
