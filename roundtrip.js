@@ -4,7 +4,7 @@ selectedDestinationAirport_roundtrip = null;
 
 let buildRoundtripSearchInterface = function() {
 
-	let body = $('body');
+	let body = $('#flightContainer');
     body.empty();
 
 
