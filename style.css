@@ -1,10 +1,17 @@
  /*BEGIN CSS FOR ROUNDTRIP TESTING*/
 #search_div {
 	width: 80%;
-	background-color: gray;
 	margin: auto;
+	position: relative;
+	top: 50px;
 }
 
+#singletrip_title{
+	bottom: 450px;
+	text-align: center;
+	background-color: yellow;
+
+}
 #departure-section {
 	float: left;
 	border: solid white;
@@ -13,25 +20,46 @@
 	margin-left: 5%;
 }
 
+#departure-input{
+	position:relative;
+	left: 50px;
+}
+#destination-input{
+	position: relative;
+	left: 50px;
+}
 #destination-section {
 	border: solid white;
 	width: 30%;
 	margin-left: 40%;
 	background-color: white;
+	
 }
 
 #date-selection {
 	margin-top: 10px;
+	
 }
 
 #departure-date-selection {
-	float: left;
+	float: right;
 	border: solid white;
-	width: 30%;
+	width: 25%;
 	background-color: white;
-	margin-left: 5%;
+	right: 20px;
+	position: relative;
+	bottom: 410px;
 }
 
+#flight-search-button{
+	float: right;
+	left: 50px;
+	bottom: 100px;
+	width: 100px;
+	height: 50px;
+	position: relative;
+	font-size: 15px;
+}
 #return-date-selection {
 	border: solid white;
 	width: 30%;
@@ -47,6 +75,7 @@
 #airport-selection {
 	height: 400px;
 	border: solid red;
+	border-style: dotted;
 }
 
 .departure-result-list {
@@ -91,32 +120,47 @@
 }
 
 /*Login*/
+#planegif{
+	height: 30%;
+	width: 30%;
+	
+	position: relative;
+	display: block;
+	bottom: 220px;
+	margin-left: auto;
+	margin-right: auto;
+}
 h1{
 	text-align:center;
 }
 
 body{
-    background-color: skyblue;
+    background-color: #CDEAF8;
 }
 
 
 #login_div{
-    padding-bottom: 30px;
-    padding-top: 10px;
-    border-style: solid;
-    background: burlywood;
-    font-family: Arial, Helvetica, sans-serif;
+    padding-bottom: 50px;
+	padding-top: 10px;
+	position: relative;
+	top: 300px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	background-size: auto;
+	width: 70%;
+	height: 100%;
+	margin: auto;
+	z-index: 100;
 }
 
 #login_btn{
 	background-color:lightskyblue; 
 	color: black;
-	
-    width: 100px;
+	position: relative;
+    width: 80px;
     height: 50px;
-    position: relative;
-	left: 320px;
-	bottom: 45px;
+    top: 70px;
+	
     font-size: 15px;
 }
 
@@ -125,13 +169,12 @@ body{
 #create_user_btn{
 	background-color:lightskyblue; 
 	color: black;
-	
-    width: 100px;
+	position: relative;
+    width: 80px;
     height: 50px;
-    position: relative;
-	left: 500px;
-	bottom: 93px;
-    font-size: 15px;
+    top: 20px;
+	font-size: 15px;
+	left: 90px;
 }
 
 
@@ -205,3 +248,5 @@ p{
 	position: relative;
 	bottom: 50px;
 }
+
+/*single trip*/
