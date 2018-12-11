@@ -10,7 +10,7 @@ selectedDestinationAirport = null;
 
 let buildSingletripSearchInterface = function() {
 
-	let body = $('body');
+	let body = $('#flightContainer');
     body.empty();
 
     console.log('build search interface called');
