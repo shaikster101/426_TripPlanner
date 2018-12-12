@@ -1,4 +1,212 @@
- /*BEGIN CSS FOR ROUNDTRIP TESTING*/
+ /*Login*/
+h1{
+	text-align:center;
+	font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+#planegif{
+	height: 30%;
+	width: 30%;
+	position: absolute;
+	left: 500px;
+}
+
+.loginbody{
+    background-color: #CDEAF8;
+}
+
+.homepagebody{
+	background-image: url(cloud.jpg);
+	background-size: cover;
+}
+
+
+#login_div{
+	position: absolute;
+	top: 300px;
+	right: 300px;
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	background-size: auto;
+	width: 70%;
+	height: 100%;
+	z-index: 100;
+}
+
+#login_btn{
+	background-color:#00d2ff; 
+	color: black;
+	position: relative;
+    width: 80px;
+    height: 50px;
+	right: 50px;
+	border: hidden;
+	top: 10px;
+	font-size: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#create_user_btn{
+	background-color: #00d2ff;
+	color: black;
+	position: relative;
+	width: 80px;
+	border: hidden;
+    height: 50px;
+	bottom: 40px;
+	left: 40px;
+	font-size: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+ 
+/*Create user page*/
+.loginDiv{
+	position: relative;
+	left: 620px;
+	top: 100px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.userDiv{
+	position: relative;
+	bottom: 5px;
+}
+
+#login_user{
+	position: relative;
+	left: 5px;
+}
+
+#password_user{
+	position: relative;
+	left: 5px;
+}
+
+.create{
+	background-color:#00d2ff; 
+	color: black;
+	position: relative;
+    width: 100px;
+    height: 50px;
+	border: hidden;
+	top: 110px;
+	left: 660px;
+	font-size: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.create2{
+	background-color:#00d2ff; 
+	color: black;
+	position: relative;
+    width: 100px;
+    height: 50px;
+	border: hidden;
+	top: 110px;
+	left: 680px;
+	font-size: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.createDiv{
+	font-size: 20px;
+	position: relative;
+	left: 680px;
+	top: 140px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/*Home Page*/
+#logout{
+	float: right;
+	width: 80px;
+	height: 50px;
+	position: relative;
+	right: 10px;
+	font-size: 18px;
+	background-color: white;
+	border-radius: 25px;
+	border: 1px solid black;
+}
+
+#logout:hover{
+	background-color:#005b96;
+}
+
+#singleBtn{
+	background-color: #d0e1f9 ;
+	border: hidden;
+  	color: black;
+	border-right: 1px solid black;
+    width: 200px;
+	height: 60px;
+	bottom: 20px;
+    font-size: 17px;
+}
+
+#singleBtn:hover{
+	background-color: #283655;
+	color: white;
+}
+
+#roundBtn{
+	background-color: #d0e1f9 ;
+	border: hidden;
+	color: black;
+	border-right: 1px solid black;
+    width: 200px;
+	height: 60px;
+	position: relative;
+	left: 20px;
+    font-size: 17px;
+}
+
+#roundBtn:hover{
+	background-color: #283655;
+	color: white;
+}
+
+#itenerary{
+	background-color: #d0e1f9 ;
+	border: hidden;
+	border-right: 1px solid black;
+	color: black;
+    width: 200px;
+	height: 60px;
+	position: relative;
+	left: 35px;
+	font-size: 17px;
+}
+
+#itenerary:hover{
+	background-color: #283655;
+	color: white;
+}
+
+.buttonDiv{
+	padding-bottom: 20px;
+	height: 40px;
+	background-color:#d0e1f9 ;
+    padding-top: 0px;
+	border-style: dashed;
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
+p1{
+	font-size: 22px;
+	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+p{
+	font-size: 20px;
+	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+	font-weight: bold;
+	position: relative;
+	bottom: 50px;
+}
+
+ /*Single Flight*/
 #search_div {
 	width: 80%;
 	margin: auto;
@@ -15,12 +223,6 @@
 	
 }
 
-#roundtrip_title{
-	position: relative;
-	bottom: 560px;
-	text-align: center;
-	
-}
 #departure-section {
 	float: left;
 	border: solid black;
@@ -31,16 +233,6 @@
 	top: 10px;
 }
 
-#departure-input{
-	position:relative;
-	left: 100px;
-	bottom: 10px;
-}
-#destination-input{
-	position: relative;
-	left: 100px;
-	bottom: 10px;
-}
 #destination-section {
 	border: solid black;
 	width: 30%;
@@ -48,6 +240,18 @@
 	background-color:  #adcbe3;
 	position: relative;
 	top: 10px;
+}
+
+#departure-input{
+	position:relative;
+	left: 100px;
+	bottom: 10px;
+}
+
+#destination-input{
+	position: relative;
+	left: 100px;
+	bottom: 10px;
 }
 
 #date-selection {
@@ -77,11 +281,6 @@
 }
 
 
-#return-date-input{
-	position: relative;
-	left: 75px;
-	bottom: 10px;
-}
 
 #flight-search-button{
 	left: 550px;
@@ -93,16 +292,7 @@
 	position: relative;
 	font-size: 18px;
 }
-#return-date-selection {
-	float: right;
-	border: solid black;
-	width: 25%;
-	left: 285px;
-	position: relative;
-	bottom: 280px;
-	background-color:  #adcbe3;
-	height: 100px;
-}
+
 
 
 #airport-selection {
@@ -149,200 +339,7 @@
     height: 300px;
 }
 
-/*Login*/
-#planegif{
-	height: 30%;
-	width: 30%;
-	position: absolute;
-	left: 500px;
-}
-h1{
-	text-align:center;
-	font-family: Georgia, 'Times New Roman', Times, serif;
-	
-}
 
-.loginbody{
-    background-color: #CDEAF8;
-}
-
-.homepagebody{
-	background-image: url(cloud.jpg);
-	background-size: cover;
-}
-
-
-#login_div{
-   
-	position: absolute;
-	top: 300px;
-	right: 300px;
-	text-align: center;
-	font-family: Arial, Helvetica, sans-serif;
-	background-size: auto;
-	width: 70%;
-	height: 100%;
-	
-	z-index: 100;
-}
-
-#login_btn{
-	background-color:#00d2ff; 
-	color: black;
-	position: relative;
-    width: 80px;
-    height: 50px;
-	right: 50px;
-	border: hidden;
-	top: 10px;
-	font-size: 15px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-#create_user_btn{
-	background-color: #00d2ff;
-	color: black;
-	position: relative;
-	width: 80px;
-	border: hidden;
-    height: 50px;
-	bottom: 40px;
-	left: 40px;
-	font-size: 15px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-/*Create user page*/
-.loginDiv{
-	position: relative;
-	left: 620px;
-	top: 100px;
-	font-family: Arial, Helvetica, sans-serif;
-	
-}
-.userDiv{
-	position: relative;
-	bottom: 5px;
-}
-
-#login_user{
-	position: relative;
-	left: 5px;
-	
-}
-
-#password_user{
-	position: relative;
-	left: 5px;
-}
-
-.create{
-	background-color:#00d2ff; 
-	color: black;
-	position: relative;
-    width: 100px;
-    height: 50px;
-
-	border: hidden;
-	top: 110px;
-	left: 680px;
-	font-size: 15px;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-
-}
-/*Home Page*/
-#logout{
-	float: right;
-	width: 80px;
-	height: 50px;
-	position: relative;
-	right: 10px;
-	font-size: 18px;
-	background-color: white;
-	border-radius: 25px;
-	border: 1px solid black;
-}
-
-#logout:hover{
-	background-color:#005b96;
-}
-
-#singleBtn{
-	background-color: #d0e1f9 ;
-	border: hidden;
-  	color: black;
-	border-right: 1px solid black;
-    width: 200px;
-	height: 60px;
-	bottom: 20px;
-    font-size: 17px;
-}
-
-#singleBtn:hover{
-	background-color: #283655;
-	color: white;
-}
-#roundBtn{
-	background-color: #d0e1f9 ;
-	border: hidden;
-	color: black;
-	border-right: 1px solid black;
-	
-    width: 200px;
-	height: 60px;
-	position: relative;
-	left: 20px;
-	
-    font-size: 17px;
-}
-
-#roundBtn:hover{
-	background-color: #283655;
-	color: white;
-}
-
-
-
-#itenerary{
-	background-color: #d0e1f9 ;
-	border: hidden;
-	border-right: 1px solid black;
-	color: black;
-
-    width: 200px;
-	height: 60px;
-	position: relative;
-	left: 35px;
-	font-size: 17px;
-}
-
-#itenerary:hover{
-	background-color: #283655;
-	color: white;
-}
-
-.buttonDiv{
-	padding-bottom: 20px;
-	height: 40px;
-	background-color:#d0e1f9 ;
-    padding-top: 0px;
-	border-style: dashed;
-	font-family: Arial, Helvetica, sans-serif;
-
-}
-
-p1{
-	font-size: 22px;
-	font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-
-p{
-	font-size: 20px;
-	font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-	font-weight: bold;
-	position: relative;
-	bottom: 50px;
-}
 
 
 
