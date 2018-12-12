@@ -334,12 +334,21 @@ p{
 }
 
 
-
+/*Ticket display*/
 #FlightHolder{
 	overflow-y: scroll;
-    height: 300px;
+	height: 300px;
+	position: relative;
+	top: 100px;
 }
-
+.departure{
+	position: relative;
+	top: 50px;
+}
+.planeid{
+	position: relative;
+	top: 20px;
+}
 
 
 
