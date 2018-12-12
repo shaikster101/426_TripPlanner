@@ -41,6 +41,10 @@
 	
 }
 
+#map{
+	height: 100%; 
+}
+
 #departure-date-selection {
 	float: right;
 	border: solid white;
