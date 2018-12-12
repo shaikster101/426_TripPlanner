@@ -9,19 +9,19 @@ let buildRoundtripSearchInterface = function() {
 
 
     body.append('<div id="search_div">');
-    $("#search_div").append('<input type="radio" name="Flight Type" value="round-trip">Round Trip<br>');
+   
 
     $("#search_div").append('<div id="airport-selection">');
     $('#airport-selection').append('<div id="departure-section">');
     $('#airport-selection').append('<div id="destination-section">');
-
+	$('#airport-selection').append('<p id= "roundtrip_title">Book a flight for a round trip</p>');
     //Departure Airport Search
     $('#departure-section').append('<h1 id="departure-text">Flying from</h1>');
-    $('#departure-section').append('<input type="text" id="departure-input">');
+    $('#departure-section').append('<input type="text" id="departure-input" placeholder = "Search for a city">');
     $('#departure-section').append('<div class="departure-result-list" id="departure-result-list">');
 
     $('#destination-section').append('<h1 id="destination-text">Flying to</h1>');
-    $('#destination-section').append('<input type="text" id="destination-input">');
+    $('#destination-section').append('<input type="text" id="destination-input" placeholder = "Search for a city">');
     $('#destination-section').append('<div class="destination-result-list" id="destination-result-list">');
 
 
