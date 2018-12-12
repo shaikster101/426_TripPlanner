@@ -148,6 +148,7 @@ let flightSearch = function() {
 			for(let i = 0; i < response.length; i++){
 				departureFlightsArr.push(response[i]);
 			}
+			console.log(departureFlights);
 			instanceSearch(departureFlights);
 		}
 	});
@@ -178,6 +179,7 @@ let instanceSearch = function(flights) {
 	let departureDate = $('#departure-date-input').val();
 
 	let departureInstances = [];
+	console.log('start finding instances');
     for(let i=0; i < flights.length; i++){
     	$.ajax(root_url + `instances?filter[flight_id]=${flights[i].id}&filter[date]=${departureDate}`,
     	// $.ajax(root_url + `instances?filter[flight_id]=263727&filter[date]=${departureDate}`, 
@@ -187,14 +189,18 @@ let instanceSearch = function(flights) {
 			data: { 
 			},
 			success: (response) => {
+				console.log(response);
 				for(let j=0; j < response.length; j++){
 					response[j].departs_at = flights[i].departs_at;
 					response[j].arrives_at = flights[i].arrives_at;
 					response[j].plane_id = flights[i].plane_id;
 					departureInstances.push(response[j])
 				}
-				if(i == flights.length-1)
-				buildConfirmationPage(departureInstances);
+				if(i == flights.length-1){
+					console.log('instances all found')
+					buildConfirmationPage(departureInstances);
+					
+				}
 			}
 	    });
 	}
@@ -239,7 +245,7 @@ var buildConfirmationPage =  function(instances){
 		// console.log(arrivalDate);
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${instances[i].id}">
-				<p class="departure"> Deaprts at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
+				<p class="departure"> Departs at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
 				<p class="arrival"> Arrives at: ${arrivalDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
 				<p class="departure"> Plane Id: ${instances[i].plane_id}</b></p>
 			</div>

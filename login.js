@@ -24,6 +24,8 @@ $(document).ready(() => {
                     //buildRoundtripSearchInterface();   
                 }
             });
+
+
     });
 
 
@@ -99,8 +101,6 @@ var homePage = function(user){
     body.append(logoutBtn);
     
     
-    
-
     body.append($('<h1>Tar Heel Travel Planner</h1>'));
 
     body.append($('<p>You are logged in as: ' +user+ '</p>')); 
