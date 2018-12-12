@@ -189,7 +189,8 @@ let instanceSearch = function(flights) {
 			success: (response) => {
 				for(let j=0; j < response.length; j++){
 					response[j].departs_at = flights[i].departs_at;
-					response[j].departs_at = flights[i].departs_at;
+					response[j].arrives_at = flights[i].arrives_at;
+					response[j].plane_id = flights[i].plane_id;
 					departureInstances.push(response[j])
 				}
 				if(i == flights.length-1)
@@ -207,10 +208,10 @@ let instanceSearch = function(flights) {
 let selectedInstance = undefined;
 var buildConfirmationPage =  function(instances){
 	console.log('instances below');
+	// console.log(instances);
 
 	var mapDiv = $('<div id="map"></div>')
 
-	console.log($("#li_"+departureAirportId));
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
@@ -229,14 +230,17 @@ var buildConfirmationPage =  function(instances){
 	body.append('<div id=FlightHolder> Flights Holder<div>');
 
 
-
+	console.log('length: '+instances.length);
 	for(let i = 0; i < instances.length; i++){
+		console.log(instances[i]);
 		let departDate = new Date(instances[i].departs_at);
-		let returnDate = new Date(instances[i].arrives_at);
+		let arrivalDate = new Date(instances[i].arrives_at);
+		// console.log(departureDate);
+		// console.log(arrivalDate);
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${instances[i].id}">
 				<p class="departure"> Deaprts at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
-				<p class="arrival"> Arrives at:${returnDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
+				<p class="arrival"> Arrives at: ${arrivalDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
 				<p class="departure"> Plane Id: ${instances[i].plane_id}</b></p>
 			</div>
 			`);
