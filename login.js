@@ -44,7 +44,7 @@ $(document).ready(() => {
         body.append($('<p1>Make a selection from the panel below: </p1>'));
        // body.append($('<img id = "cloud" src = "cloud image.png">'))
         //Buttons
-        var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
+        var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Book a flight</button>').click(()=>{buildSingletripSearchInterface();});
         //var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
         var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{});
 
@@ -80,7 +80,7 @@ $(document).ready(() => {
         var loginDiv = $('<div class="loginDiv"></div>');
         var userDiv = $('<div class="userDiv"></div>');
         var passDiv = $('<div class="passDiv"></div>');
-
+        var creationDiv = $('<div class ="createDiv"></div>');
         body.append("<h1>Make an Account</h1>");
 
         userDiv.append("Username:");
@@ -96,20 +96,24 @@ $(document).ready(() => {
         body.append(loginDiv); 
         
         body.append($('<button class= "create"> Create Account</button>').click(()=>{createUser()})); 
+        body.append($('<button class= "create2"> Go back to login page</button>').click(() =>{window.location.reload()}));
+       
+        body.append(creationDiv);
 
         
     });
 
 });
 
+
+
 var createUser = function(){
 
     var login_url = root_url + "users"; 
     var user = $('#login_user').val();
     var pass = $('#password_user').val();
-
-    alert(user); 
-    alert(pass); 
+    $('.createDiv').append("User Created")
+   
 
     $.ajax(login_url, 
         {   type: 'POST', 
