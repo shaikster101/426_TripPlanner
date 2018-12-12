@@ -95,7 +95,8 @@ let buildResultList = function() {
 	$('.departure-list-item').on('click', function() {
 		selectedDepartureAirport = getIdFromListItem($(this));
 		departureAirportId = getIdFromListItem($(this));
-		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML 
+		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML
+		console.log(departureFlighCode);
 		$('.selectedDepartureItem').removeClass('selectedDepartureItem');
 		$(this).addClass('selectedDepartureItem');
 	});
@@ -150,7 +151,8 @@ let flightSearch = function() {
 			}
 			instanceSearch(departureFlights);
 		}
-    });
+	});
+	getAirportCoordinates(); 
 }
 
 
@@ -165,25 +167,13 @@ let getAirportCoordinates = function(){
 			success: (response) => {
 				let dAirport = [];
 				dAirport = response; 
+				console.log(response);
 				homeLat = dAirport[0].latitude;
 				homeLog = dAirport[0].longitude;  
 
 			}
 		});
 		
-		$.ajax(root_url + `airports?filter[code]=${destinationFlighCode}`,
-		{   
-			type: 'GET', 
-			xhrFields: {withCredentials: true}, 
-			data: { 
-			},
-			success: (response) => {
-				let dAirport = [];
-				dAirport = response; 
-				DLat = dAirport[0].latitude;
-				DLog = dAirport[0].longitude;  
-			}
-	    });
 }
 
 let instanceSearch = function(flights) {
@@ -291,13 +281,7 @@ var buildConfirmationPage =  function(instances){
 	body.append(confirmBtn); 
 	body.append(mapDiv);
 
-	// var script = document.createElement('script')
-	// script.type = 'text/javascript';
-	// script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2h3SW6HJljk-cwQ3hutFYPepUq-XyUtE&callback=initMap';
-
-
-	// document.body.appendChild(script)
-	// createMap();
+	loadScript();
 
 
 
@@ -398,9 +382,20 @@ var finalConfirm = function(){
 }
 
 
-var createMap = function(){
-	map = new google.maps.Map(document.getElementById('map'), {
-		center: {lat: -34.397, lng: 150.644},
-		zoom: 8
-	  });
+function initMap() {
+
+	var mapOptions = {
+		zoom: 10,
+		center: new google.maps.LatLng(homeLat, homeLog)
+	};
+
+	var map = new google.maps.Map(document.getElementById('map'),
+		mapOptions);
+}
+
+function loadScript() {
+	var script = document.createElement('script');
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2h3SW6HJljk-cwQ3hutFYPepUq-XyUtE&callback=initMap';
+	document.body.appendChild(script);
 }

@@ -17,7 +17,7 @@ $(document).ready(() => {
             }
                 },
                 success: (response) => { 
-                    alert("Login Worked");
+                   
                     homePage(user)
                     //Uncomment next line to go into roundtrip search after login
                     //buildRoundtripSearchInterface();   
@@ -29,7 +29,8 @@ $(document).ready(() => {
     var homePage = function(user){
         var body = $('body')
         body.empty();
-
+        body.removeClass("loginbody");
+        body.addClass("homepagebody");
         var flightContainer = $('<div id="flightContainer"></div>')
         var logoutBtn = $('<button id = "logout">Logout</button>').click(() =>{window.location.reload()});
         body.append(logoutBtn);
@@ -41,7 +42,7 @@ $(document).ready(() => {
 
         body.append($('<p>You are logged in as: ' +user+ '</p>')); 
         body.append($('<p1>Make a selection from the panel below: </p1>'));
-        
+       // body.append($('<img id = "cloud" src = "cloud image.png">'))
         //Buttons
         var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
         var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
@@ -96,7 +97,7 @@ $(document).ready(() => {
         
         body.append($('<button class= "create"> Create User</button>').click(()=>{createUser()})); 
 
-        alert("this works");
+        
     });
 
 });
