@@ -45,13 +45,13 @@ $(document).ready(() => {
        // body.append($('<img id = "cloud" src = "cloud image.png">'))
         //Buttons
         var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
-        var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
+        //var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
         var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{});
 
         var buttoDiv = $('<div class = "buttonDiv"></div>'); 
 
         buttoDiv.append(singleTripBTN);
-        buttoDiv.append(roundTripBTN); 
+        //buttoDiv.append(roundTripBTN); 
         buttoDiv.append(iteneraryBTN); 
         
         body.append(buttoDiv); 

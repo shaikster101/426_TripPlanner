@@ -195,8 +195,8 @@ let instanceSearch = function(flights) {
 					response[j].departs_at = flights[i].departs_at;
 					departureInstances.push(response[j])
 					console.log(response);
-					buildConfirmationPage(departureInstances);
 				}
+				buildConfirmationPage(departureInstances);
 			}
 	    });
 	}
