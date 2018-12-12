@@ -92,7 +92,7 @@
 .departure-result-list {
 	border: solid black;
 	height: 270px;
-	overflow: scroll;
+	overflow-y: scroll;
 }
 
 .destination-result-list {
