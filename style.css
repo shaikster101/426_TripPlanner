@@ -199,8 +199,6 @@ h1{
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-
-
 #create_user_btn{
 	background-color: #00d2ff;
 	color: black;
@@ -214,10 +212,45 @@ h1{
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/*Create user page*/
+.loginDiv{
+	position: relative;
+	left: 620px;
+	top: 100px;
+	font-family: Arial, Helvetica, sans-serif;
+	
+}
+.userDiv{
+	position: relative;
+	bottom: 5px;
+}
 
+#login_user{
+	position: relative;
+	left: 5px;
+	
+}
+
+#password_user{
+	position: relative;
+	left: 5px;
+}
+
+.create{
+	background-color:#00d2ff; 
+	color: black;
+	position: relative;
+    width: 100px;
+    height: 50px;
+
+	border: hidden;
+	top: 110px;
+	left: 680px;
+	font-size: 15px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
 /*Home Page*/
-
-
 #logout{
 	float: right;
 	width: 80px;
@@ -310,4 +343,6 @@ p{
 	position: relative;
 	bottom: 50px;
 }
+
+
 
