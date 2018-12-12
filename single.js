@@ -180,6 +180,7 @@ let instanceSearch = function(flights) {
 
 	let departureInstances = [];
 	console.log('start finding instances');
+	let numOfSuccesses = 0;
     for(let i=0; i < flights.length; i++){
     	$.ajax(root_url + `instances?filter[flight_id]=${flights[i].id}&filter[date]=${departureDate}`,
     	// $.ajax(root_url + `instances?filter[flight_id]=263727&filter[date]=${departureDate}`, 
@@ -189,6 +190,7 @@ let instanceSearch = function(flights) {
 			data: { 
 			},
 			success: (response) => {
+				numOfSuccesses = numOfSuccesses+1;
 				console.log(response);
 				for(let j=0; j < response.length; j++){
 					response[j].departs_at = flights[i].departs_at;
@@ -196,7 +198,7 @@ let instanceSearch = function(flights) {
 					response[j].plane_id = flights[i].plane_id;
 					departureInstances.push(response[j])
 				}
-				if(i == flights.length-1){
+				if(numOfSuccesses == flights.length){
 					console.log('instances all found')
 					buildConfirmationPage(departureInstances);
 					
