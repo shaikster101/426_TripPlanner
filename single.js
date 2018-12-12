@@ -226,7 +226,7 @@ var buildConfirmationPage =  function(instances){
 	$('#AirportHolder').append('<div id = "DepartureHolder">'+ departureCity+ '</div>');
 	$('#AirportHolder').append('<div id = "DestinationHolder">'+ destinationCity+ '</div>');
 
-	body.append('<div id=FlightHolder> Flights Holder<div>');
+	body.append('<div id=FlightHolder><div>');
 
 
 
@@ -235,9 +235,9 @@ var buildConfirmationPage =  function(instances){
 		let returnDate = new Date(instances[i].arrives_at);
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${instances[i].id}">
-				<p class="departure"> Deaprts at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
+				<p class="departure"> Departs at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
 				<p class="arrival"> Arrives at:${returnDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
-				<p class="departure"> Plane Id: ${instances[i].plane_id}</b></p>
+				<p class="planeid"> Plane Id: ${instances[i].plane_id}</b></p>
 			</div>
 			`);
 	}
