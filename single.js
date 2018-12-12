@@ -3,6 +3,7 @@ let seats = [];
 let departureAirportId; 
 let destinationAirportId; 
 let departureFlightsArr = [];
+let confirmationCode = undefined;
 
 
 selectedDepartureAirport = null;
@@ -169,6 +170,8 @@ let instanceSearch = function(flights) {
 }
 
 var buildConfirmationPage =  function(departureFlightsArr){
+	
+
 
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
@@ -225,7 +228,6 @@ var buildConfirmationPage =  function(departureFlightsArr){
 	body.append('<input type="text" id="Name" ></input>' + '<br>');
 	body.append('<input type="text" id="Email"></input>'+'<br>')
 
-
 	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
 		finalConfirm();});
 
@@ -235,7 +237,74 @@ var buildConfirmationPage =  function(departureFlightsArr){
 
 }
 
+
 var finalConfirm = function(){
+	//Creating unique confirmation code for the itinerary
+	let emailInput = $('#Email').val();
+	let nameInput = $('#Name').val();
+
+	let itineraryFinishedLoading = false;
+	$.ajax(root_url + 'itineraries', 
+	{   
+		type: 'GET', 
+		xhrFields: {withCredentials: true}, 
+		data: { 
+		},
+		success: (response) => { 
+			let usedCodes = [];
+			for(let  i=0; i < response.length; i++){
+		      	usedCodes.push(response[i].confirmation_code)
+			}
+
+			let code = "";
+			let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+
+			do{
+				for (var i = 0; i < 6; i++)
+				code += possible.charAt(Math.floor(Math.random() * possible.length));
+			} while (usedCodes.indexOf(code) != -1)
+			confirmationCode = code;
+
+			$.ajax(root_url + 'itineraries', 
+			{   
+				type: 'POST', 
+				xhrFields: {withCredentials: true}, 
+				data: { 
+					"itinerary": {
+					    "confirmation_code": code,
+					    "email": emailInput
+					  }
+				},
+				success: (response) => {
+					console.log('itinerary made');
+
+					$.ajax(root_url + `itineraries?filter[confirmationCode]=${code}`, 
+					{   
+						type: 'GET', 
+						xhrFields: {withCredentials: true}, 
+						data: { 
+						},
+						success: (response) => {
+							console.log(response);
+						}
+					});
+				}
+			});
+
+			$.ajax(root_url + `itineraries?filter[confirmationCode]=${code}`, 
+			{   
+				type: 'GET', 
+				xhrFields: {withCredentials: true}, 
+				data: { 
+				},
+				success: (response) => {
+					console.log(response);
+				}
+			});
+
+		}
+	});
+
 	var body = $('body')
 
 	body.empty(); 

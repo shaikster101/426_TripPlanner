@@ -1,5 +1,5 @@
 var root_url = "http://comp426.cs.unc.edu:3001/"
-
+let userId = undefined;
 
 $(document).ready(() => {
 
@@ -20,7 +20,7 @@ $(document).ready(() => {
                     alert("Login Worked");
                     homePage(user)
                     //Uncomment next line to go into roundtrip search after login
-                    //buildRoundtripSearchInterface();                
+                    //buildRoundtripSearchInterface();   
                 }
             });
     });
@@ -52,6 +52,14 @@ $(document).ready(() => {
         body.append(buttoDiv); 
         body.append(flightContainer); 
 
+        $.ajax(root_url + `users?filter[username]=${user}`, 
+        {   type: 'GET', 
+            xhrFields: {withCredentials: true}, 
+            data: {},
+            success: (response) => { 
+                userId = response.id;
+            }
+        });
        
 
     }
