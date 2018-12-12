@@ -2,7 +2,16 @@ let airports = [];
 let seats = [];
 let departureAirportId; 
 let destinationAirportId; 
+let departureFlighCode; 
+let destinationFlighCode;
 let departureFlightsArr = [];
+
+
+let homeLat; 
+let homeLog; 
+
+let Dlat; 
+let Dlog; 
 
 
 selectedDepartureAirport = null;
@@ -13,7 +22,7 @@ let buildSingletripSearchInterface = function() {
 	let body = $('#flightContainer');
     body.empty();
 
-    console.log('build search interface called');
+	console.log('build search interface called');
 
     body.append('<div id="search_div">');
 
@@ -42,7 +51,7 @@ let buildSingletripSearchInterface = function() {
     $('#flight-search-button-div').append('<input type="button" id="flight-search-button" value="Search">');
 
     $('#flight-search-button').on('click', function(){
-    	flightSearch();
+    	getAirportCoordinates();
     });
 
 	retrieveAirports();
@@ -57,7 +66,7 @@ let retrieveAirports = function() {
 		data: { 
 		},
 		success: (response) => { 
-			airports = response;
+			airports = response; 
 			buildResultList();         
 		}
     });
@@ -83,6 +92,7 @@ let buildResultList = function() {
 		console.log($(this).attr('id'));
 		selectedDepartureAirport = getIdFromListItem($(this));
 		departureAirportId = getIdFromListItem($(this));
+		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML 
 		$('.selectedDepartureItem').removeClass('selectedDepartureItem');
 		$(this).addClass('selectedDepartureItem');
 	});
@@ -91,6 +101,7 @@ let buildResultList = function() {
 		console.log($(this).attr('id'));
 		selectedDestinationAirport = getIdFromListItem($(this));
 		destinationAirportId = getIdFromListItem($(this));
+		destinationFlighCode = $(this).find('.destination-list-code')[0].childNodes[0].innerHTML 
 		$('.selectedDestinationItem').removeClass('selectedDestinationItem');
 		$(this).addClass('selectedDestinationItem');
 	});
@@ -142,6 +153,39 @@ let flightSearch = function() {
     });
 }
 
+
+let getAirportCoordinates = function(){
+
+	$.ajax(root_url + `airports?filter[code]=${departureFlighCode}`,
+		{   
+			type: 'GET', 
+			xhrFields: {withCredentials: true}, 
+			data: { 
+			},
+			success: (response) => {
+				let dAirport = [];
+				dAirport = response; 
+				homeLat = dAirport[0].latitude;
+				homeLog = dAirport[0].longitude;  
+
+			}
+		});
+		
+		$.ajax(root_url + `airports?filter[code]=${destinationFlighCode}`,
+		{   
+			type: 'GET', 
+			xhrFields: {withCredentials: true}, 
+			data: { 
+			},
+			success: (response) => {
+				let dAirport = [];
+				dAirport = response; 
+				DLat = dAirport[0].latitude;
+				DLog = dAirport[0].longitude;  
+			}
+	    });
+}
+
 let instanceSearch = function(flights) {
 	let departureDate = $('#departure-date-input').val();
 
@@ -164,16 +208,22 @@ let instanceSearch = function(flights) {
 			}
 	    });
 	}
+
+	
 	
 	buildConfirmationPage(departureFlightsArr, airports);
 }
+
+
 
 var buildConfirmationPage =  function(departureFlightsArr){
 
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
+
 	console.log(departureFlightsArr[0]); 
+
 	let body = $('body');
 	body.empty();
 
@@ -211,7 +261,7 @@ var buildConfirmationPage =  function(departureFlightsArr){
 		},
 		success: (response) => { 
 			seats = response;
-			console.log(seats[0])	      
+			console.log(seats[0])      
 		}
 	});
 	
