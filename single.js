@@ -275,7 +275,13 @@ var buildConfirmationPage =  function(departureFlightsArr){
 	
 
 	body.append(confirmation); 
-	body.append('<input type="text" id="Name" ></input>' + '<br>');
+	body.append('First Name: <input type="text" id="confirmFirstName" ></input>' + '<br>');
+	body.append('Last Name: <input type="text" id="confirmLastName" ></input>' + '<br>');
+	body.append('Age: <input type="text" id="confirmAge" ></input>' + '<br>');
+	body.append('Gender: <select name="carlist" form="carform">'+
+					'<option value="male">M</option>'+
+					'<option value="female">F</option>'+
+				'</select>' + '<br>');	
 	body.append('<input type="text" id="Email"></input>'+'<br>')
 
 	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
@@ -283,13 +289,10 @@ var buildConfirmationPage =  function(departureFlightsArr){
 
 	body.append(confirmBtn); 
 
-
-
 }
 
 
 var finalConfirm = function(){
-	//Creating unique confirmation code for the itinerary
 	let emailInput = $('#Email').val();
 	let nameInput = $('#Name').val();
 
@@ -305,11 +308,10 @@ var finalConfirm = function(){
 			for(let  i=0; i < response.length; i++){
 		      	usedCodes.push(response[i].confirmation_code)
 			}
-
+			//Creating unique confirmation code for the itinerary
 			let code = "";
 			let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-
-			do{
+			do {
 				for (var i = 0; i < 6; i++)
 				code += possible.charAt(Math.floor(Math.random() * possible.length));
 			} while (usedCodes.indexOf(code) != -1)
@@ -341,16 +343,32 @@ var finalConfirm = function(){
 				}
 			});
 
-			$.ajax(root_url + `itineraries?filter[confirmationCode]=${code}`, 
+			$.ajax(root_url + 'itineraries', 
 			{   
-				type: 'GET', 
+				type: 'POST', 
 				xhrFields: {withCredentials: true}, 
 				data: { 
+					"itinerary": {
+					    "confirmation_code": code,
+					    "email": emailInput
+					  }
 				},
 				success: (response) => {
-					console.log(response);
+					console.log('itinerary made');
+
+					$.ajax(root_url + `itineraries?filter[confirmationCode]=${code}`, 
+					{   
+						type: 'GET', 
+						xhrFields: {withCredentials: true}, 
+						data: { 
+						},
+						success: (response) => {
+							console.log(response);
+						}
+					});
 				}
 			});
+
 
 		}
 	});
