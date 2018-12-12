@@ -221,8 +221,7 @@ var buildConfirmationPage =  function(instances){
 	let body = $('body');
 	body.empty();
 
-	var backBTN = $('<button id=goBack> Go back </button>').click(()=>{
-		buildSingletripSearchInterface();});
+	var backBTN = $('<button id=goBack> Go back </button>').click(()=>{homePage(user);});
 
 	body.append(backBTN); 
 	
@@ -374,8 +373,7 @@ var finalConfirm = function(){
 
 	var confirmHeader = $('<h1 id= mainConfirm> Congratulations a Booking has Been confirmed, check your email for details</h1>')
 
-	var backBtn = $('<button id=goBack> Go back </button>').click(()=>{
-		buildSingletripSearchInterface();});
+	var backBtn = $('<button id=goBack> Go back </button>').click(()=>{homePage(user);});
 	
 	body.append(confirmHeader); 
 	body.append(backBtn); 
