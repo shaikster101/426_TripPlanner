@@ -96,7 +96,6 @@ let buildResultList = function() {
 		selectedDepartureAirport = getIdFromListItem($(this));
 		departureAirportId = getIdFromListItem($(this));
 		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML
-		console.log(departureFlighCode);
 		$('.selectedDepartureItem').removeClass('selectedDepartureItem');
 		$(this).addClass('selectedDepartureItem');
 	});
@@ -167,7 +166,6 @@ let getAirportCoordinates = function(){
 			success: (response) => {
 				let dAirport = [];
 				dAirport = response; 
-				console.log(response);
 				homeLat = dAirport[0].latitude;
 				homeLog = dAirport[0].longitude;  
 
@@ -179,7 +177,6 @@ let getAirportCoordinates = function(){
 let instanceSearch = function(flights) {
 	let departureDate = $('#departure-date-input').val();
 
-	console.log(departureDate);
 	let departureInstances = [];
     for(let i=0; i < flights.length; i++){
     	$.ajax(root_url + `instances?filter[flight_id]=${flights[i].id}&filter[date]=${departureDate}`,
@@ -194,8 +191,8 @@ let instanceSearch = function(flights) {
 					response[j].departs_at = flights[i].departs_at;
 					response[j].departs_at = flights[i].departs_at;
 					departureInstances.push(response[j])
-					console.log(response);
 				}
+				if(i == flights.length-1)
 				buildConfirmationPage(departureInstances);
 			}
 	    });
@@ -207,13 +204,13 @@ let instanceSearch = function(flights) {
 }
 
 
-
+let selectedInstance = undefined;
 var buildConfirmationPage =  function(instances){
 	console.log('instances below');
 
-	console.log(instances);
 	var mapDiv = $('<div id="map"></div>')
 
+	console.log($("#li_"+departureAirportId));
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
@@ -260,10 +257,8 @@ var buildConfirmationPage =  function(instances){
 	
 	//..........................................
 
-
 	var confirmation =$('<div id="confirmation">Confirmation Details</div><br>');
 	
-
 	body.append(confirmation); 
 	body.append('First Name: <input type="text" id="confirmFirstName" ></input>' + '<br>');
 	body.append('Last Name: <input type="text" id="confirmLastName" ></input>' + '<br>');
@@ -278,13 +273,17 @@ var buildConfirmationPage =  function(instances){
 	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
 		finalConfirm();});
 
+	$('.departure-list-item').on('click', function() {
+		selectedInstance = getIdFromListItem($(this));
+		console.log(selectedInstance);
+		$('.selectedInstance').removeClass('selectedInstance');
+		$(this).addClass('selectedInstance');
+	});
+
 	body.append(confirmBtn); 
 	body.append(mapDiv);
 
 	loadScript();
-
-
-
 }
 
 
@@ -324,21 +323,23 @@ var finalConfirm = function(){
 				data: { 
 					"itinerary": {
 					    "confirmation_code": code,
-					    "email": emailInput
+					    "email": email
 					  }
 				},
 				success: (response) => {
 					console.log('itinerary made');
 
-					$.ajax(root_url + `itineraries?filter[confirmationCode]=${code}`, 
+					$.ajax(root_url + `itineraries?filter[confirmation_code]=${code}`, 
 					{   
 						type: 'GET', 
 						xhrFields: {withCredentials: true}, 
 						data: { 
 						},
 						success: (response) => {
-							itineraryId = response.id;
-
+							console.log(code);
+							console.log(response);
+							itineraryId = response[0].id;
+							console.log('instance: '+selectedInstance+"  itinerary: "+itineraryId);
 							$.ajax(root_url + 'tickets', 
 							{   
 								type: 'POST', 
@@ -349,22 +350,19 @@ var finalConfirm = function(){
 									    "last_name": lastName,
 									    "age": age,
 									    "gender": gender,
-									    "is_purchased": true
+									    "is_purchased": true,
+									    "instance_id": selectedInstance,
+									    "itinerary_id": itineraryId
 									  }
 								},
 								success: (response) => {
 									console.log('ticket posted');
 								}
 							});
-
 						}
 					});
 				}
 			});
-
-			
-
-
 		}
 	});
 

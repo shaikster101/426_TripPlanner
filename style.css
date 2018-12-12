@@ -311,3 +311,7 @@ p{
 	bottom: 50px;
 }
 
+.selectedInstance {
+	background-color: blue;
+}
+
