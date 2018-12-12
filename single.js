@@ -93,7 +93,6 @@ let buildResultList = function() {
 	}
 
 	$('.departure-list-item').on('click', function() {
-		console.log($(this).attr('id'));
 		selectedDepartureAirport = getIdFromListItem($(this));
 		departureAirportId = getIdFromListItem($(this));
 		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML 
@@ -102,7 +101,6 @@ let buildResultList = function() {
 	});
 
 	$('.destination-list-item').on('click', function() {
-		console.log($(this).attr('id'));
 		selectedDestinationAirport = getIdFromListItem($(this));
 		destinationAirportId = getIdFromListItem($(this));
 		destinationFlighCode = $(this).find('.destination-list-code')[0].childNodes[0].innerHTML 
@@ -147,11 +145,9 @@ let flightSearch = function() {
 		},
 		success: (response) => { 
 			departureFlights = response;
-			console.log(departureFlights);
 			for(let i = 0; i < response.length; i++){
 				departureFlightsArr.push(response[i]);
 			}
-			console.log(departureFlightsArr[20]);
 			instanceSearch(departureFlights);
 		}
     });
@@ -204,32 +200,33 @@ let instanceSearch = function(flights) {
 			data: { 
 			},
 			success: (response) => {
-				console.log('flight_id: '+flights[i].id+"  "+'date: '+departureDate);
 				for(let j=0; j < response.length; j++){
-					departureInstances.push(response[i])
+					response[j].departs_at = flights[i].departs_at;
+					response[j].departs_at = flights[i].departs_at;
+					departureInstances.push(response[j])
+					console.log(response);
+					buildConfirmationPage(departureInstances);
 				}
-				console.log(response);
 			}
 	    });
 	}
 
 	
 	
-	buildConfirmationPage(departureFlightsArr, airports);
+	
 }
 
 
 
-var buildConfirmationPage =  function(departureFlightsArr){
-	
+var buildConfirmationPage =  function(instances){
+	console.log('instances below');
 
+	console.log(instances);
 	var mapDiv = $('<div id="map"></div>')
 
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
-
-	console.log(departureFlightsArr[0]); 
 
 	let body = $('body');
 	body.empty();
@@ -247,14 +244,14 @@ var buildConfirmationPage =  function(departureFlightsArr){
 
 
 
-	for(let i = 0; i < departureFlightsArr.length; i++){
-		let departDate = new Date(departureFlightsArr[i].departs_at);
-		let returnDate = new Date(departureFlightsArr[i].arrives_at);
+	for(let i = 0; i < instances.length; i++){
+		let departDate = new Date(instances[i].departs_at);
+		let returnDate = new Date(instances[i].arrives_at);
 		$('#FlightHolder').append(`
-			<div class="departure-list-item" id="li_${departureFlightsArr[i].id}">
+			<div class="departure-list-item" id="li_${instances[i].id}">
 				<p class="departure"> Deaprts at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
 				<p class="arrival"> Arrives at:${returnDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
-				<p class="departure"> Plane Id: ${departureFlightsArr[i].plane_id}</b></p>
+				<p class="departure"> Plane Id: ${instances[i].plane_id}</b></p>
 			</div>
 			`);
 	}
@@ -268,7 +265,6 @@ var buildConfirmationPage =  function(departureFlightsArr){
 		},
 		success: (response) => { 
 			seats = response;
-			console.log(seats[0])      
 		}
 	});
 	
@@ -282,11 +278,11 @@ var buildConfirmationPage =  function(departureFlightsArr){
 	body.append('First Name: <input type="text" id="confirmFirstName" ></input>' + '<br>');
 	body.append('Last Name: <input type="text" id="confirmLastName" ></input>' + '<br>');
 	body.append('Age: <input type="text" id="confirmAge" ></input>' + '<br>');
-	body.append('Gender: <select name="carlist" form="carform">'+
+	body.append('Gender: <select name="Gender" id="confirmGender">'+
 					'<option value="male">M</option>'+
 					'<option value="female">F</option>'+
 				'</select>' + '<br>');	
-	body.append('<input type="text" id="Email"></input>'+'<br>')
+	body.append('Email: <input type="text" id="confirmEmail"></input>'+'<br>')
 	
 
 	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
@@ -295,13 +291,13 @@ var buildConfirmationPage =  function(departureFlightsArr){
 	body.append(confirmBtn); 
 	body.append(mapDiv);
 
-	var script = document.createElement('script')
-	script.type = 'text/javascript';
-	script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2h3SW6HJljk-cwQ3hutFYPepUq-XyUtE&callback=initMap';
+	// var script = document.createElement('script')
+	// script.type = 'text/javascript';
+	// script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2h3SW6HJljk-cwQ3hutFYPepUq-XyUtE&callback=initMap';
 
 
-	document.body.appendChild(script)
-	createMap();
+	// document.body.appendChild(script)
+	// createMap();
 
 
 
@@ -309,8 +305,11 @@ var buildConfirmationPage =  function(departureFlightsArr){
 
 
 var finalConfirm = function(){
-	let emailInput = $('#Email').val();
-	let nameInput = $('#Name').val();
+	let firstName = $('#confirmFirstName').val();
+	let lastName = $('#confirmLastName').val();
+	let age = $('#confirmAge').val();
+	let gender = $('#confirmGender').val();
+	let email = $('#confirmEmail').val();
 
 	let itineraryFinishedLoading = false;
 	$.ajax(root_url + 'itineraries', 
@@ -333,6 +332,7 @@ var finalConfirm = function(){
 			} while (usedCodes.indexOf(code) != -1)
 			confirmationCode = code;
 
+			let itineraryId;
 			$.ajax(root_url + 'itineraries', 
 			{   
 				type: 'POST', 
@@ -353,37 +353,32 @@ var finalConfirm = function(){
 						data: { 
 						},
 						success: (response) => {
-							console.log(response);
+							itineraryId = response.id;
+
+							$.ajax(root_url + 'tickets', 
+							{   
+								type: 'POST', 
+								xhrFields: {withCredentials: true}, 
+								data: { 
+									"ticket": {
+									    "first_name": firstName,
+									    "last_name": lastName,
+									    "age": age,
+									    "gender": gender,
+									    "is_purchased": true
+									  }
+								},
+								success: (response) => {
+									console.log('ticket posted');
+								}
+							});
+
 						}
 					});
 				}
 			});
 
-			$.ajax(root_url + 'itineraries', 
-			{   
-				type: 'POST', 
-				xhrFields: {withCredentials: true}, 
-				data: { 
-					"itinerary": {
-					    "confirmation_code": code,
-					    "email": emailInput
-					  }
-				},
-				success: (response) => {
-					console.log('itinerary made');
-
-					$.ajax(root_url + `itineraries?filter[confirmationCode]=${code}`, 
-					{   
-						type: 'GET', 
-						xhrFields: {withCredentials: true}, 
-						data: { 
-						},
-						success: (response) => {
-							console.log(response);
-						}
-					});
-				}
-			});
+			
 
 
 		}
