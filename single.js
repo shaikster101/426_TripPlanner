@@ -32,12 +32,12 @@ let buildSingletripSearchInterface = function() {
 	$('#airport-selection').append('<p id= "singletrip_title">Book a flight for a single trip</p>');
     //Departure Airport Search
     $('#departure-section').append('<h1 id="departure-text">Flying from</h1>');
-    $('#departure-section').append('<input type="text" id="departure-input">');
+    $('#departure-section').append('<input type="text" id="departure-input" placeholder = "Search for a city">');
     $('#departure-section').append('<div class="departure-result-list" id="departure-result-list">');
 
 	//Destination Airport Search
     $('#destination-section').append('<h1 id="destination-text">Flying to</h1>');
-    $('#destination-section').append('<input type="text" id="destination-input">');
+    $('#destination-section').append('<input type="text" id="destination-input" placeholder = "Search for a city">');
     $('#destination-section').append('<div class="destination-result-list" id="destination-result-list">');
 
 	//Date Selection

@@ -31,11 +31,15 @@ $(document).ready(() => {
         body.empty();
 
         var flightContainer = $('<div id="flightContainer"></div>')
+        var logoutBtn = $('<button id = "logout">Logout</button>').click(() =>{window.location.reload()});
+        body.append(logoutBtn);
+        
+        
+        
 
+        body.append($('<h1>Tar Heel Travel Planner</h1>'));
 
-        body.append($('<h1>Home Page</h1>'));
-
-        body.append($('<p>USER: ' +user+ '</p>')); 
+        body.append($('<p>You are logged in as: ' +user+ '</p>')); 
         body.append($('<p1>Make a selection from the panel below: </p1>'));
         
         //Buttons
