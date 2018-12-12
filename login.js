@@ -85,9 +85,6 @@ $(document).ready(() => {
         body.append($('<button class= "create"> Create User</button>').click(()=>{createUser()})); 
 
         alert("this works");
-
-        
-          
     });
 
 });
