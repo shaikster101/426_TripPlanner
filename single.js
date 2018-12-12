@@ -11,6 +11,8 @@ let confirmationCode = undefined;
 let homeLat; 
 let homeLog; 
 
+var map;
+
 let Dlat; 
 let Dlog; 
 
@@ -52,9 +54,10 @@ let buildSingletripSearchInterface = function() {
     $('#flight-search-button-div').append('<input type="button" id="flight-search-button" value="Search">');
 
     $('#flight-search-button').on('click', function(){
-    	getAirportCoordinates();
-    });
-
+    	flightSearch();
+	});
+	
+	
 	retrieveAirports();
 }
 
@@ -220,6 +223,7 @@ let instanceSearch = function(flights) {
 var buildConfirmationPage =  function(departureFlightsArr){
 	
 
+	var mapDiv = $('<div id="map"></div>')
 
 	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
 	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
@@ -283,11 +287,23 @@ var buildConfirmationPage =  function(departureFlightsArr){
 					'<option value="female">F</option>'+
 				'</select>' + '<br>');	
 	body.append('<input type="text" id="Email"></input>'+'<br>')
+	
 
 	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
 		finalConfirm();});
 
 	body.append(confirmBtn); 
+	body.append(mapDiv);
+
+	var script = document.createElement('script')
+	script.type = 'text/javascript';
+	script.src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyB2h3SW6HJljk-cwQ3hutFYPepUq-XyUtE&callback=initMap';
+
+
+	document.body.appendChild(script)
+	createMap();
+
+
 
 }
 
@@ -384,7 +400,12 @@ var finalConfirm = function(){
 	
 	body.append(confirmHeader); 
 	body.append(backBtn); 
-
-
 }
 
+
+var createMap = function(){
+	map = new google.maps.Map(document.getElementById('map'), {
+		center: {lat: -34.397, lng: 150.644},
+		zoom: 8
+	  });
+}
