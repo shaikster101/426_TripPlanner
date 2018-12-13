@@ -109,7 +109,7 @@ let buildResultList = function() {
 	$('.departure-list-item').on('click', function() {
 		selectedDepartureAirport = getIdFromListItem($(this));
 		departureAirportId = getIdFromListItem($(this));
-		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML
+		departureFlighCode = $(this).find('.departure-list-code')[0].childNodes[0].innerHTML;
 		$('.selectedDepartureItem').removeClass('selectedDepartureItem');
 		$(this).addClass('selectedDepartureItem');
 	});
@@ -117,7 +117,7 @@ let buildResultList = function() {
 	$('.destination-list-item').on('click', function() {
 		selectedDestinationAirport = getIdFromListItem($(this));
 		destinationAirportId = getIdFromListItem($(this));
-		destinationFlighCode = $(this).find('.destination-list-code')[0].childNodes[0].innerHTML 
+		destinationFlighCode = $(this).find('.destination-list-code')[0].childNodes[0].innerHTML; 
 		$('.selectedDestinationItem').removeClass('selectedDestinationItem');
 		$(this).addClass('selectedDestinationItem');
 	});
@@ -190,7 +190,7 @@ let getAirportCoordinates = function(){
 }
 
 let instanceSearch = function(flights) {
-	departureDate = $('#departure-date-input').val();
+	let departureDate = $('#departure-date-input').val();
 
 	let departureInstances = [];
 	console.log('start finding instances');
@@ -234,8 +234,8 @@ var buildConfirmationPage =  function(instances){
 
 	var mapDiv = $('<div id="map"></div>')
 
-	departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
-	destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
+	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
+	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
 
 	let body = $('body');
