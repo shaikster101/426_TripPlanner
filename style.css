@@ -149,22 +149,7 @@ h1{
 	color: white;
 }
 
-#roundBtn{
-	background-color: #d0e1f9 ;
-	border: hidden;
-	color: black;
-	border-right: 1px solid black;
-    width: 200px;
-	height: 60px;
-	position: relative;
-	left: 20px;
-    font-size: 17px;
-}
 
-#roundBtn:hover{
-	background-color: #283655;
-	color: white;
-}
 
 #itenerary{
 	background-color: #d0e1f9 ;
@@ -174,7 +159,6 @@ h1{
     width: 200px;
 	height: 60px;
 	position: relative;
-	left: 35px;
 	font-size: 17px;
 }
 
@@ -245,14 +229,19 @@ p{
 
 #departure-input{
 	position:relative;
-	left: 100px;
+	left: 80px;
 	bottom: 10px;
+	height: 25px;
+	width: 200px;
+	
 }
 
 #destination-input{
 	position: relative;
-	left: 100px;
+	left: 80px;
 	bottom: 10px;
+	height: 25px;
+	width: 200px;
 }
 
 #date-selection {
@@ -439,7 +428,7 @@ p{
 }
 /*Itinerary page*/
 #ticketDiv{
-	font-size: 15px;
+	font-size: 18px;
 	
 }
 .ticket{
