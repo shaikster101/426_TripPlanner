@@ -4,7 +4,7 @@ var body;
 
 var ticketDiv = $('<div id="ticketDiv"></div>'); 
 
-var buildItenerary = function(user_id){
+var buildItenerary = function(user_id, user){
 
     body = $('body');
     body.empty();
