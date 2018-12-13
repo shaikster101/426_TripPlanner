@@ -4,12 +4,17 @@ let departureAirportId;
 let destinationAirportId; 
 let departureFlighCode; 
 let destinationFlighCode;
-let arrivalTime;
-let departureTime; 
+
 let departureFlightsArr = [];
 let confirmationCode = undefined;
 
 let departureDate;
+
+let departureTime; 
+let arrivalTime;
+
+let departDate;
+let arrivalDate;
 
 
 let homeLat; 
@@ -248,10 +253,13 @@ var buildConfirmationPage =  function(instances){
 	console.log('length: '+instances.length);
 	for(let i = 0; i < instances.length; i++){
 		console.log(instances[i]);
-		let departDate = new Date(instances[i].departs_at);
-		let arrivalDate = new Date(instances[i].arrives_at);
+		departDate = new Date(instances[i].departs_at);
+		arrivalDate = new Date(instances[i].arrives_at);
 		// console.log(departureDate);
 		// console.log(arrivalDate);
+
+		departureTime = departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }); 
+		arrivalTime  = arrivalDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
 		$('#FlightHolder').append(`
 			<div class="departure-list-item" id="li_${instances[i].id}">
 				<p class="departure"> Departs at: ${departDate.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })}</b></p>
@@ -390,7 +398,7 @@ var finalConfirm = function(){
 									    "last_name": lastName,
 									    "age": age,
 										"gender": gender,
-										"info": "Going From: " + departureCity + " to " + destinationCity + " on " + departureDate,
+										"info": "Going From: " + departureCity + " to " + destinationCity + " on " + departureDate + " Departing at: " + departureTime + " and arriving at: " + arrivalTime, 
 									    "is_purchased": true,
 									    "instance_id": selectedInstance,
 									    "itinerary_id": itineraryId
