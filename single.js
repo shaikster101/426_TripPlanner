@@ -234,8 +234,8 @@ var buildConfirmationPage =  function(instances){
 
 	var mapDiv = $('<div id="map"></div>')
 
-	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
-	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
+	departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
+	destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
 
 	let body = $('body');
