@@ -11,7 +11,9 @@ var buildItenerary = function(user_id){
 
     var header = $('<h1 id= "mainItenerary"> My Tickets </h1>');
 
-    var backHome = $('<button id="backHome">Go Back Home</button>').click(() =>{homePage(user);});
+    var backHome = $('<button id="backHome">Go Back Home</button>').click(() =>{
+        ticketDiv.empty(); 
+        homePage(user);});
     body.append(backHome);
     body.append(header);
     body.append(ticketDiv);
