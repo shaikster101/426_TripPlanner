@@ -271,14 +271,35 @@ var buildConfirmationPage =  function(instances){
 	var confirmation =$('<div id="confirmation">Confirmation Details</div><br>');
 	
 	body.append(confirmation); 
-	body.append('First Name: <input type="text" id="confirmFirstName" ></input>' + '<br>');
-	body.append('Last Name: <input type="text" id="confirmLastName" ></input>' + '<br>');
-	body.append('Age: <input type="text" id="confirmAge" ></input>' + '<br>');
-	body.append('Gender: <select name="Gender" id="confirmGender">'+
-					'<option value="male">M</option>'+
-					'<option value="female">F</option>'+
-				'</select>' + '<br>');	
-	body.append('Email: <input type="text" id="confirmEmail"></input>'+'<br>')
+	var firstNameDiv = $('<div class="firstNameDiv"></div>');
+	firstNameDiv.append("First Name:");
+	var firstNameIn = $('<input type="text" id="confirmFirstName" ></input>');
+	firstNameDiv.append(firstNameIn);
+	body.append(firstNameDiv);
+	//confirmations.append('First Name: <input type="text" id="confirmFirstName" ></input>' + '<br>');
+	var lastNameDiv = $('<div class = "lastNameDiv"></div>');
+	lastNameDiv.append("Last Name:");
+	var lastNameIn = $('<input type = "text" id = "confirmLastName"></input>');
+	lastNameDiv.append(lastNameIn);
+	body.append(lastNameDiv);
+	var ageDiv = $('<div class = "ageDiv"></div>');
+	ageDiv.append("Age:");
+	var ageIn = $('<input type = "text" id = "confirmAge"></input>');
+	ageDiv.append(ageIn);
+	body.append(ageDiv);
+	var genderDiv = $('<div class = "genderDiv"></div>');
+	genderDiv.append("Gender:");
+	var genderIn = $('<select name="Gender" id="confirmGender">'+
+	'<option value="male">M</option>'+
+	'<option value="female">F</option>'+'</select>'+ '<br>');
+	genderDiv.append(genderIn);
+	body.append(genderDiv);
+	var emailDiv = $('<div class = "emailDiv"></div>');
+	emailDiv.append("Email:");
+	var emailIn = $('<input type = "text" id = "confirmEmail"></input>');
+	emailDiv.append(emailIn);
+	body.append(emailDiv);
+	
 	
 
 	var confirmBtn = $('<button id=confirmBooking> Confirm Booking</button>').click(()=>{
