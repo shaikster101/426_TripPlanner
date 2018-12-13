@@ -63,6 +63,8 @@ let populateTicketList = function() {
             success: (response) => {
                 date = response[0].date;
                 let flightId = response[0].flight_id;
+                console.log('instance below');
+                console.log(response);
                 //Get Flight
                 $.ajax(root_url + `flights?filter[id]=${flightId}`, 
                 {   
@@ -74,7 +76,8 @@ let populateTicketList = function() {
                         arrivalTime = response[0].arrives_at;
                         let departureId = response[0].departure_id;
                         let arrivalId = response[0].arrival_id;
-
+                        // console.log('flight below');
+                        // console.log(response);
                         //Get Departure Airport
                         $.ajax(root_url + `airports?filter[id]=${departureId}`, 
                         {   

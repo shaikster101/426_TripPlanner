@@ -125,6 +125,7 @@ var homePage = function(user){
         data: {},
         success: (response) => { 
             userId = response.id;
+            console.log('userId: '+userId);
         }
     });
    
