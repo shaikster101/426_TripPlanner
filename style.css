@@ -306,8 +306,19 @@ p{
 	margin-left: 20px;
 	margin-right: 20px;
 	border: solid black;
+	
+
 }
 
+.departure-list-city{
+	position: relative;
+	top:60px;
+}
+
+.destination-list-city{
+	position: relative;
+	top:60px;
+}
 .departure-list-item {
 	margin-left: 20px;
 	margin-right: 20px;
