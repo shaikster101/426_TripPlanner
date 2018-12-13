@@ -44,7 +44,7 @@ var populateTicketList = function(){
         var age = tickets[i].age;
 
 
-        var tempDiv = $('<div id="ticket"></div>');
+        var tempDiv = $('<div class="ticket"></div>');
 
         tempDiv.append($('<br>'));
         tempDiv.append("Name: " + fname + " " +lname);
@@ -58,7 +58,6 @@ var populateTicketList = function(){
         tempDiv.append("Itinerary Id: " + itiId);
         tempDiv.append($('<br>'));
         ticketDiv.append(tempDiv);
-
     }
 
     body.append(ticketDiv);
