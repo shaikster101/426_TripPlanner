@@ -1,48 +1,55 @@
 tickets = []
+
+var body;
+
 var buildItenerary = function(){
 
-
-    var body = $('body'); 
-    body.empty(); 
+    body = $('body');
+    body.empty();
 
     var header = $('<h1 id= "mainItenerary"> My Tickets </h1>');
 
+    var ticketDiv = $('<div id="ticketHolder"></div>');
 
-    var ticketDiv = $('<div id="ticketHolder"></div>')
+
+
+
+
 
     var backHome = $('<button id="backHome">Go Back Home</button>').click(() =>{homePage(user);});
     body.append(backHome);
-    body.append(header); 
+    body.append(header);
+    body.append(ticketDiv);
 
-    $.ajax(root_url + `tickets?filter[user_id]=${userId}`, 
-    {   type: 'GET', 
-        xhrFields: {withCredentials: true}, 
+    $.ajax(root_url + `tickets?filter[user_id]=${userId}`,
+    {   type: 'GET',
+        xhrFields: {withCredentials: true},
         data: {},
-        success: (response) => { 
-            tickets = response; 
+        success: (response) => {
+            tickets = response;
             console.log(tickets);
             populateTicketList()
         }
     });
 
 
-    // console.log(tickets.length); 
+    // console.log(tickets.length);
 
     // for(let i = 0; i < tickets.length; i++){
-    //     var fname = tickets[i].name; 
-    //     var gender = tickets[i].gender; 
+    //     var fname = tickets[i].name;
+    //     var gender = tickets[i].gender;
     //     var age = ticket[i].age;
-    //     console.log(age); 
-    //     alert("this works"); 
+    //     console.log(age);
+    //     alert("this works");
 
     //     var tempDiv = $('<div id="ticket"></div>');
 
-    //     tempDiv.append(age); 
-    //     ticketDiv.append(tempDiv); 
+    //     tempDiv.append(age);
+    //     ticketDiv.append(tempDiv);
 
     // }
 
-    body.append(ticketDiv); 
+    body.append(ticketDiv);
 }
 
 let populateTicketList = function() {
@@ -55,10 +62,10 @@ let populateTicketList = function() {
     for(let i=0; i < tickets.length; i++){
         //Get Instance
         console.log('on ticket '+i)
-        $.ajax(root_url + `instances?filter[id]=${tickets[i].instance_id}`, 
-        {   
-            type: 'GET', 
-            xhrFields: {withCredentials: true}, 
+        $.ajax(root_url + `instances?filter[id]=${tickets[i].instance_id}`,
+        {
+            type: 'GET',
+            xhrFields: {withCredentials: true},
             data: {},
             success: (response) => {
                 date = response[0].date;
@@ -66,12 +73,12 @@ let populateTicketList = function() {
                 console.log('instance below');
                 console.log(response);
                 //Get Flight
-                $.ajax(root_url + `flights?filter[id]=${flightId}`, 
-                {   
-                    type: 'GET', 
-                    xhrFields: {withCredentials: true}, 
+                $.ajax(root_url + `flights?filter[id]=${flightId}`,
+                {
+                    type: 'GET',
+                    xhrFields: {withCredentials: true},
                     data: {},
-                    success: (response) => { 
+                    success: (response) => {
                         departTime = response[0].departs_at;
                         arrivalTime = response[0].arrives_at;
                         let departureId = response[0].departure_id;
@@ -79,21 +86,21 @@ let populateTicketList = function() {
                         // console.log('flight below');
                         // console.log(response);
                         //Get Departure Airport
-                        $.ajax(root_url + `airports?filter[id]=${departureId}`, 
-                        {   
-                            type: 'GET', 
-                            xhrFields: {withCredentials: true}, 
+                        $.ajax(root_url + `airports?filter[id]=${departureId}`,
+                        {
+                            type: 'GET',
+                            xhrFields: {withCredentials: true},
                             data: {},
-                            success: (response) => { 
+                            success: (response) => {
                                 departureAirport = response[0];
 
                                 //Get Arrival Airport
-                                $.ajax(root_url + `airports?filter[id]=${arrivalId}`, 
-                                {   
-                                    type: 'GET', 
-                                    xhrFields: {withCredentials: true}, 
+                                $.ajax(root_url + `airports?filter[id]=${arrivalId}`,
+                                {
+                                    type: 'GET',
+                                    xhrFields: {withCredentials: true},
                                     data: {},
-                                    success: (response) => { 
+                                    success: (response) => {
                                         arrivalAirport = response[0];
 
                                         ////////////////////////////////////////
