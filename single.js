@@ -4,12 +4,19 @@ let departureAirportId;
 let destinationAirportId; 
 let departureFlighCode; 
 let destinationFlighCode;
+let arrivalTime;
+let departureTime; 
 let departureFlightsArr = [];
 let confirmationCode = undefined;
+
+let departureDate;
 
 
 let homeLat; 
 let homeLog; 
+
+let departureCity; 
+let destinationCity; 
 
 var map;
 
@@ -176,7 +183,7 @@ let getAirportCoordinates = function(){
 }
 
 let instanceSearch = function(flights) {
-	let departureDate = $('#departure-date-input').val();
+	departureDate = $('#departure-date-input').val();
 
 	let departureInstances = [];
 	console.log('start finding instances');
@@ -220,8 +227,8 @@ var buildConfirmationPage =  function(instances){
 
 	var mapDiv = $('<div id="map"></div>')
 
-	let departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
-	let destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
+	departureCity = document.getElementById("li_"+departureAirportId).childNodes[1].innerHTML; 
+	destinationCity = document.getElementById("li_"+destinationAirportId).childNodes[1].innerHTML;
 
 
 	let body = $('body');
@@ -360,7 +367,8 @@ var finalConfirm = function(){
 									    "first_name": firstName,
 									    "last_name": lastName,
 									    "age": age,
-									    "gender": gender,
+										"gender": gender,
+										"info": "Going From: " + departureCity + " to " + destinationCity + " on " + departureDate,
 									    "is_purchased": true,
 									    "instance_id": selectedInstance,
 									    "itinerary_id": itineraryId
