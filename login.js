@@ -99,8 +99,7 @@ var homePage = function(user){
     var flightContainer = $('<div id="flightContainer"></div>')
     var logoutBtn = $('<button id = "logout">Logout</button>').click(() =>{window.location.reload()});
     body.append(logoutBtn);
-    
-    
+
     body.append($('<h1>Tar Heel Travel Planner</h1>'));
 
     body.append($('<p>You are logged in as: ' +user+ '</p>')); 
