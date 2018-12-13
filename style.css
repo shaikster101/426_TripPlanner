@@ -8,7 +8,7 @@ h1{
 	height: 30%;
 	width: 30%;
 	position: absolute;
-	left: 500px;
+	left: 550px;
 }
 
 .loginbody{
@@ -24,7 +24,7 @@ h1{
 #login_div{
 	position: absolute;
 	top: 300px;
-	right: 300px;
+	right: 250px;
 	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
 	background-size: auto;
@@ -39,7 +39,7 @@ h1{
 	position: relative;
     width: 80px;
     height: 50px;
-	right: 50px;
+	right: 20px;
 	border: hidden;
 	top: 10px;
 	font-size: 15px;
@@ -54,7 +54,7 @@ h1{
 	border: hidden;
     height: 50px;
 	bottom: 40px;
-	left: 40px;
+	left: 80px;
 	font-size: 15px;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -434,5 +434,11 @@ p{
 	top: 50px;
 	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
-
+.selectedInstance{
+	background-color:#3385c6;
+}
+/*Itinerary page*/
+#ticketDiv{
+	font-size: 15px;
+	border: 2px solid black;
+}
