@@ -190,7 +190,7 @@ let getAirportCoordinates = function(){
 }
 
 let instanceSearch = function(flights) {
-	let departureDate = $('#departure-date-input').val();
+	departureDate = $('#departure-date-input').val();
 
 	let departureInstances = [];
 	console.log('start finding instances');
