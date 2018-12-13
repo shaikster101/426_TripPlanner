@@ -45,15 +45,15 @@ var populateTicketList = function(){
         var tempDiv = $('<div id="ticket"></div>');
 
         tempDiv.append($('<br>'));
-        tempDiv.append(fname + " " + lname);
+        tempDiv.append("Name: " + fname + " " +lname);
         tempDiv.append($('<br>'));
-        tempDiv.append(age);
+        tempDiv.append("Age: " + age);
         tempDiv.append($('<br>'));
-        tempDiv.append(gender);
+        tempDiv.append("Gender: " + gender);
         tempDiv.append($('<br>'));
         tempDiv.append(info);
         tempDiv.append($('<br>'));
-        tempDiv.append(itiId);
+        tempDiv.append("Itinerary Id: " + itiId);
         tempDiv.append($('<br>'));
         ticketDiv.append(tempDiv);
 
