@@ -2,9 +2,7 @@ tickets = []
 
 var body;
 
-var ticketDiv = $('<div id="ticketHolder"></div>');
-
-var buildItenerary = function(){
+var buildItenerary = function(user_id){
 
     body = $('body');
     body.empty();
@@ -16,7 +14,7 @@ var buildItenerary = function(){
     body.append(header);
     body.append(ticketDiv);
 
-    $.ajax(root_url + `tickets?filter[user_id]=${userId}`,
+    $.ajax(root_url + `tickets?filter[user_id]=${user_id}`,
     {   type: 'GET',
         xhrFields: {withCredentials: true},
         data: {},
@@ -30,28 +28,28 @@ var buildItenerary = function(){
 
     console.log(tickets.length);
 
-    
+
 }
 var populateTicketList = function(){
     for(let i = 0; i < tickets.length; i++){
         var fname = tickets[i].first_name;
         var gender = tickets[i].gender;
-        var lname = tickets[i].last_name; 
-        var itiId = tickets[i].itinerary_id; 
-        var info = tickets[i].info; 
+        var lname = tickets[i].last_name;
+        var itiId = tickets[i].itinerary_id;
+        var info = tickets[i].info;
         var age = tickets[i].age;
-       
+
 
         var tempDiv = $('<div id="ticket"></div>');
 
         tempDiv.append(fname + " " + lname);
-        tempDiv.append($('<br>')); 
+        tempDiv.append($('<br>'));
         tempDiv.append(age);
-        tempDiv.append($('<br>')); 
+        tempDiv.append($('<br>'));
         tempDiv.append(gender);
-        tempDiv.append($('<br>')); 
-        tempDiv.append(info); 
-        tempDiv.append($('<br>')); 
+        tempDiv.append($('<br>'));
+        tempDiv.append(info);
+        tempDiv.append($('<br>'));
         tempDiv.append(itiId);
         ticketDiv.append(tempDiv);
 

@@ -92,6 +92,16 @@ var createUser = function(){
 }
 
 var homePage = function(user){
+    $.ajax(root_url + `users?filter[username]=${user}`, 
+    {   type: 'GET', 
+        xhrFields: {withCredentials: true}, 
+        data: {},
+        success: (response) => { 
+            userId = response.id;
+            console.log('userId: '+userId);
+        }
+    });
+    
     var body = $('body')
     body.empty();
     body.removeClass("loginbody");
@@ -108,7 +118,7 @@ var homePage = function(user){
     //Buttons
     var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
     //var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
-    var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{buildItenerary();});
+    var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{buildItenerary(userId);});
 
     var buttoDiv = $('<div class = "buttonDiv"></div>'); 
 
@@ -119,14 +129,7 @@ var homePage = function(user){
     body.append(buttoDiv); 
     body.append(flightContainer); 
 
-    $.ajax(root_url + `users?filter[username]=${user}`, 
-    {   type: 'GET', 
-        xhrFields: {withCredentials: true}, 
-        data: {},
-        success: (response) => { 
-            userId = response.id;
-        }
-    });
+    
    
 
 }
