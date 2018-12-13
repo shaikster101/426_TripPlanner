@@ -391,7 +391,7 @@ var finalConfirm = function(){
 
 	var confirmHeader = $('<h1 id= mainConfirm> Congratulations a Booking has Been confirmed, check your email for details</h1>')
 
-	var backBtn = $('<button id=goBack> Go back </button>').click(()=>{homePage(user);});
+	var backBtn = $('<button id=goBack> Home Page </button>').click(()=>{homePage(user);});
 	
 	body.append(confirmHeader); 
 	body.append(backBtn); 
