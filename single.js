@@ -239,8 +239,8 @@ var buildConfirmationPage =  function(instances){
 	body.append(backBTN); 
 	
 	body.append('<div id="AirportHolder"></div>');
-	$('#AirportHolder').append('<div id = "DepartureHolder">'+ departureCity+ '</div>');
-	$('#AirportHolder').append('<div id = "DestinationHolder">'+ destinationCity+ '</div>');
+	$('#AirportHolder').append('<div id = "DepartureHolder">'+ "Going From: " +  departureCity+ '</div>');
+	$('#AirportHolder').append('<div id = "DestinationHolder">'+ "Going to: " + destinationCity+ '</div>');
 
 	body.append('<div id=FlightHolder><div>');
 
@@ -299,6 +299,7 @@ var buildConfirmationPage =  function(instances){
 	});
 
 	body.append(confirmBtn); 
+	body.append($('<p id="Departure Location"> Departing From <p>'))
 	body.append(mapDiv);
 
 	loadScript();
