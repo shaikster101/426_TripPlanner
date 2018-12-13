@@ -118,7 +118,7 @@ var homePage = function(user){
     //Buttons
     var singleTripBTN = $('<button id = "singleBtn" class ="singleTripBTN">Single Trip</button>').click(()=>{buildSingletripSearchInterface();});
     //var roundTripBTN = $('<button id = "roundBtn" class ="roundTripBTN">Round Trip</button>').click(()=>{buildRoundtripSearchInterface()});
-    var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{buildItenerary(userId);});
+    var iteneraryBTN = $('<button id = "itenerary" class ="iteneraryBTN">My Flights</button>').click(()=>{buildItenerary(userId, user);});
 
     var buttoDiv = $('<div class = "buttonDiv"></div>'); 
 
