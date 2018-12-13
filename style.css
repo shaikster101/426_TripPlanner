@@ -392,9 +392,13 @@ p{
 	width: 600px;
 	height: 360px;
 	position: relative;
-	top: 80px;
-	left:900px;
-	margin-bottom: 30px;
+	top: 225px;
+	left: 500px;
+	border: 2px solid black;
+	margin-bottom: 20px;
+}
+#map.center{
+	display: block;
 }
 
 #goBack{
@@ -430,10 +434,13 @@ p{
 #ticketDiv{
 	font-size: 18px;
 	
+	
 }
 .ticket{
 	border: 2px solid black;
 	height: 150px;
+	background-color: white;
+	text-align: center;
 }
 
 #backHome{
@@ -446,6 +453,7 @@ p{
 	background-color: white;
 	border-radius: 25px;
 	border: 1px solid black;
+
 }
 #backHome:hover{
 	background-color:#005b96;
