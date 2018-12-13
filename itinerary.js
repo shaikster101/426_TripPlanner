@@ -2,7 +2,7 @@ tickets = []
 
 var body;
 
-var buildItenerary = function(){
+var buildItenerary = function(user_id){
 
     body = $('body');
     body.empty();
@@ -11,7 +11,7 @@ var buildItenerary = function(){
 
     var ticketDiv = $('<div id="ticketHolder"></div>');
 
-
+    console.log('user_id in itin: '+user_id);
 
 
 
@@ -21,7 +21,7 @@ var buildItenerary = function(){
     body.append(header);
     body.append(ticketDiv);
 
-    $.ajax(root_url + `tickets?filter[user_id]=${userId}`,
+    $.ajax(root_url + `tickets?filter[user_id]=${user_id}`,
     {   type: 'GET',
         xhrFields: {withCredentials: true},
         data: {},
