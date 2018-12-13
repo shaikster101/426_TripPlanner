@@ -431,7 +431,7 @@ var finalConfirm = function(){
 function initMap() {
 
 	var mapOptions = {
-		zoom: 10,
+		zoom: 13,
 		center: new google.maps.LatLng(homeLat, homeLog)
 	};
 
