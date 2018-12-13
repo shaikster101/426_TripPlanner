@@ -337,9 +337,9 @@ p{
 /*Ticket display*/
 #FlightHolder{
 	overflow-y: scroll;
-	height: 250px;
+	height: 275px;
 	position: relative;
-	top: 100px;
+	top: 90px;
 }
 .departure{
 	position: relative;
@@ -421,6 +421,18 @@ p{
 }
 #goBack:hover{
 	background-color:#005b96;
+}
+#DepartureHolder{
+	font-size: 22px;
+	position: relative;
+	top: 50px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+#DestinationHolder{
+	font-size: 22px;
+	position: relative;
+	top: 50px;
+	font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 
