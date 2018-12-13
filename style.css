@@ -337,7 +337,7 @@ p{
 /*Ticket display*/
 #FlightHolder{
 	overflow-y: scroll;
-	height: 300px;
+	height: 250px;
 	position: relative;
 	top: 100px;
 }
@@ -349,7 +349,78 @@ p{
 	position: relative;
 	top: 20px;
 }
+#confirmation{
+	position: relative;
+	top: 120px;
+	text-align: center;
+	font-size: 22px;
+	background: #d0e1f9;
+}
 
+.firstNameDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 130px;
+}
+.lastNameDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 140px;
+}
+.ageDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 150px;
+}
+.genderDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 160px;
+}
+.emailDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 170px;
+}
+#confirmBooking{
+	position: relative;
+	left: 720px;
+	background-color: #d0e1f9;
+	border: hidden;
+	width: 100px;
+	height: 50px;
+	font-size: 14px;
+	font-family:Georgia, 'Times New Roman', Times, serif;
+	top: 200px;
+}
 
+#map{
+	width: 600px;
+	height: 360px;
+	position: relative;
+	top: 80px;
+	left:900px;
+	margin-bottom: 30px;
+}
+
+#goBack{
+	float: right;
+	width: 80px;
+	height: 50px;
+	position: relative;
+	right: 10px;
+	font-size: 18px;
+	background-color: white;
+	border-radius: 25px;
+	border: 1px solid black;
+}
+#goBack:hover{
+	background-color:#005b96;
+}
 
 
