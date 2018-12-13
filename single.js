@@ -320,7 +320,7 @@ var buildConfirmationPage =  function(instances){
 	});
 
 	body.append(confirmBtn); 
-	body.append($('<p id="Departure Location"> Departing From <p>'))
+
 	body.append(mapDiv);
 
 	loadScript();
