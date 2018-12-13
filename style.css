@@ -337,9 +337,9 @@ p{
 /*Ticket display*/
 #FlightHolder{
 	overflow-y: scroll;
-	height: 300px;
+	height: 250px;
 	position: relative;
-	top: 100px;
+	top: 7px;
 }
 .departure{
 	position: relative;
@@ -349,7 +349,63 @@ p{
 	position: relative;
 	top: 20px;
 }
+#confirmation{
+	position: relative;
+	top: 20px;
+	text-align: center;
+	font-size: 22px;
+	background: #d0e1f9;
+}
 
+.firstNameDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+.lastNameDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+.ageDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+.genderDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+.emailDiv{
+	font-size: 18px;
+	text-align: center;
+	position: relative;
+	top: 50px;
+}
+#confirmBooking{
+	
+}
 
+#map{
+	width: 200px;
+	height: 200px;
+}
+
+#goBack{
+	float: right;
+	width: 80px;
+	height: 50px;
+	position: relative;
+	right: 10px;
+	font-size: 18px;
+	background-color: white;
+	border-radius: 25px;
+	border: 1px solid black;
+}
 
 
