@@ -10,6 +10,8 @@ let confirmationCode = undefined;
 
 let departureDate;
 
+//variables
+
 let departureTime; 
 let arrivalTime;
 
